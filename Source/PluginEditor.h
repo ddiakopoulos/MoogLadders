@@ -6,8 +6,7 @@
 
 
 //==============================================================================
-/**
-*/
+
 class DafxAudioProcessorEditor  : public AudioProcessorEditor, 
                                   public SliderListener, 
                                   public ButtonListener,
@@ -27,12 +26,10 @@ private:
     
     ScopedPointer<ComboBox> filterTypeSelector;
     
-    Label *cutoffSliderLabel, *resonanceSliderLabel, *helloLabel; 
+    Label *cutoffSliderLabel, *resonanceSliderLabel; 
     Slider *cutoffSlider, *resSlider;
     
-    DrawableButton *myButton; 
-    
-     DafxAudioProcessor* getProcessor() const { return static_cast <DafxAudioProcessor*> (getAudioProcessor()); }
+    DafxAudioProcessor* getProcessor() const { return static_cast <DafxAudioProcessor*> (getAudioProcessor()); }
     
 };
 

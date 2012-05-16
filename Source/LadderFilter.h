@@ -1,5 +1,5 @@
-#ifndef dafx_MoogFilter_h
-#define dafx_MoogFilter_h
+#ifndef ML_MOOGFILTER_BASE_H
+#define ML_MOOGFILTER_BASE_H
 
 #define SNAP_TO_ZERO(n)    if (! (n < -1.0e-8 || n > 1.0e-8)) n = 0;
 

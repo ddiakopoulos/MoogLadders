@@ -44,28 +44,3 @@ static inline float UTIL_SATURATE(float input) {
     float x2 = fabs( input - 0.95 );
     return 0.5 * (x1 - x2);
 }
-
-/*
-static void UTIL_ANTIALIASING_FILTER(const real_T b[11], const real_T x[2], real_T y[2])
-{
-    real_T dbuffer[11];
-    
-    int32_T k;
-    int32_T j;
-    
-    
-    memset(&dbuffer[1], 0, 10U * sizeof(real_T));
-    for (j = 0; j < 2; j++) {
-        for (k = 0; k < 10; k++) {
-            dbuffer[k] = dbuffer[k + 1];
-        }
-        
-        dbuffer[10] = 0.0;
-        for (k = 0; k < 11; k++) {
-            dbuffer[k] += x[j] * b[k];
-        }
-        
-        y[j] = dbuffer[0];
-    }
-}
- */ 

@@ -7,13 +7,12 @@
 DafxAudioProcessor::DafxAudioProcessor()
 {
     
-    // Default 
+    // Simplified Moog Defaults
     resonance = 0.10f;
     cutoff = 1000; 
     
     filterType = 0; 
-
-    // Default Simplified Moog
+    
     MoogLadder.add(new SimplifiedMoog()); 
     MoogLadder.add(new SimplifiedMoog()); 
     

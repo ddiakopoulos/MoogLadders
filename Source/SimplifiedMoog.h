@@ -8,18 +8,18 @@
 //============================================================================== 
 /*
  
- The simplified nonlinear Moog filter is based on the full Huovilainen model,
- with five nonlinear (tanh) functions (4 first-order sections and a feedback).
- Like the original, this model needs an oversampling factor of at least two when
- these nonlinear functions are used to reduce possible aliasing. This model
- maintains the ability to self oscillate when the feedback gain is >= 1.0. 
+    The simplified nonlinear Moog filter is based on the full Huovilainen model,
+    with five nonlinear (tanh) functions (4 first-order sections and a feedback).
+    Like the original, this model needs an oversampling factor of at least two when
+    these nonlinear functions are used to reduce possible aliasing. This model
+    maintains the ability to self oscillate when the feedback gain is >= 1.0. 
  
- References: DAFX - Zolzer (ed) (2nd ed)
- Original implementation: Valimaki, Bilbao, Smith, Abel, Pakarinen, Berners (DAFX)
+    References: DAFX - Zolzer (ed) (2nd ed)
+    Original implementation: Valimaki, Bilbao, Smith, Abel, Pakarinen, Berners (DAFX)
  
- Considerations for oversampling: 
- http://music.columbia.edu/pipermail/music-dsp/2005-February/062778.html
- http://www.synthmaker.co.uk/dokuwiki/doku.php?id=tutorials:oversampling
+    Considerations for oversampling: 
+    http://music.columbia.edu/pipermail/music-dsp/2005-February/062778.html
+    http://www.synthmaker.co.uk/dokuwiki/doku.php?id=tutorials:oversampling
  
  */ 
 

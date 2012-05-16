@@ -50,12 +50,10 @@ void DafxAudioProcessorEditor::paint (Graphics& g)
     g.setColour (Colours::black);
     g.setFont (20.0f);
     
-    g.drawFittedText ("Moog Ladders",
-                      20, 0, getWidth(), 40,
-                      Justification::left, 1);
+    g.drawFittedText ("Moog Ladders", 20, 0, getWidth(), 40, Justification::left, 1);
     
-    
-    if (filterTypeSelector != nullptr) {
+    if (filterTypeSelector != nullptr) 
+    {
         
         filterTypeSelector->setBounds (  160, 10, 195, 30);
         filterTypeSelector->clear();
@@ -65,8 +63,6 @@ void DafxAudioProcessorEditor::paint (Graphics& g)
         filterTypeSelector->addItem (("Stilson"), 2);
             filterTypeSelector->addSeparator();
         filterTypeSelector->addItem (("Huovilainen"), 3);
-        
-        //filterTypeSelector->setSelectedId (0, true);
         
     }
     
@@ -117,7 +113,7 @@ void DafxAudioProcessorEditor::comboBoxChanged (ComboBox* comboBoxThatHasChanged
 }
 
 
-// Button handling
+// No buttons to handle... yet
 void DafxAudioProcessorEditor::buttonClicked(Button* btn)
 {
     
