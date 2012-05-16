@@ -51,7 +51,7 @@ void HuovilainenMoog::computeCutoff(float cut) {
     
     // Normal scaled impulse invariant transformed one-pole filter; exp() models resonance
     // The coefficient g determines the cutoff frequency
-    _tune = (1.0 - exp(-((2*M_PI)*x_2*fcr))) / _thermal; // Huovilainen
+    _tune = (1.0 - exp(-((2*M_PI)*x_2*fcr))) / _thermal;
     
     computeResonance(_resonance);
 
@@ -125,6 +125,3 @@ void HuovilainenMoog::processSamples(float *samples, int numSamples) throw() {
     }
     
 }
-
-
-

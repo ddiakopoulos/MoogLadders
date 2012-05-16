@@ -111,12 +111,3 @@ void StilsonMoog::processSamples(float *samples, int numSamples) throw() {
     
 }
 
-
-
-
-
-
-
-
-
-

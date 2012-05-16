@@ -91,3 +91,4 @@ void SimplifiedMoog::processSamples(float *samples, int numSamples) throw() {
     }
     
 }
+

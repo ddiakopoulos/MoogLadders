@@ -1,26 +1,28 @@
-#ifndef dafx_Stilson_h 
-#define dafx_Stilson_h
+#ifndef ML_STILSON_H
+#define ML_STILSON_H
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "LadderFilter.h"
 
-// Great discussion on oversampling:
-// http://music.columbia.edu/pipermail/music-dsp/2005-February/062778.html
-// Also see:
-//http://www.synthmaker.co.uk/dokuwiki/doku.php?id=tutorials:oversampling
-
-/* A digital model of the Moog filter was first presented by Stilson and Smith [10].
- As in the analog prototype, it has four one-pole filters in series, and a global 
- feedback is used to produce the resonance. To realize the filter, a unit delay 
- has to be inserted in the feedback path, but this couples the cutoff and the 
- resonance controls. Various ways of compensation have been examined, 
- with the “compromise” version [10] being the most attractive. The “compromise” 
- version inserts a zero at z = −0.3 inside each one-pole section, 
- thus mostly decoupling the resonance and the cutoff parameters. While the Stilson 
- and Smith Moog model is certainly useful and solves the problem of fast 
- coefficient update, it becomes unstable with very large resonance values 
- and it cannot self-oscillate. Furthermore, it does not emulate the 
- characteristic distortion produced by the original transistor ladder circuit.
+// Description
+//============================================================================== 
+/*
+ 
+ A digital model of the classic Moog filter was presented first by Stilson and
+ Smith. This model uses a cascade of one-pole IIR filters in series with a global
+ feedback to produce resonance. A digital realization of this filter introduces a
+ unit delay, effectively making it a fifth-order filter. Unfortunately, this
+ delay also has the effect of coupling the cutoff and resonance parameters,
+ uncharacteristic of the uncoupled control of the original Moog ladder. As a
+ compromise, a zero can be inserted at z = -0.3 inside each one pole section to
+ minimize the coupling the parameters (humans are not particularly sensitive to
+ variations in Q factor). Although fast coefficient updates can be achieved since
+ the nonlinearities of the Moog are not considered, the filter becomes unstable
+ with very large resonance values and does not enter self-oscillation. 
+ 
+ References: Stilson and Smith (1996), DAFX - Zolzer (ed) (2nd ed)
+ Original implementation: Tim Stilson 
+ 
  */ 
 
 class StilsonMoog : public LadderFilter {
