@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="qyBe1O" name="MoogLadders" projectType="audioplug" version="0.0.1"
+              bundleIdentifier="com.dd.ml" buildVST="0" buildRTAS="0" buildAU="1"
+              pluginName="MoogLadders" pluginDesc="MoogLadders" pluginManufacturer="dimitri diakopoulos"
+              pluginManufacturerCode="nqst" pluginCode="Plug" pluginChannelConfigs="{1, 1}, {2, 2}"
+              pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
+              pluginSilenceInIsSilenceOut="0" pluginTailLength="0" pluginEditorRequiresKeys="0"
+              pluginAUExportPrefix="MoogLaddersAU" pluginAUViewClass="MoogLaddersAU_V1"
+              pluginRTASCategory="" jucerVersion="3.0.0">
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" objCExtraSuffix="Ob1lT0" juceFolder="../../sdks/juce/modules"
+               vstFolder="~/SDKs/vstsdk2.4"/>
+  </EXPORTFORMATS>
+  <CONFIGURATIONS>
+    <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="MoogLadders"
+                   osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+    <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="MoogLadders"
+                   osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+  </CONFIGURATIONS>
+  <MAINGROUP id="zlpnCG" name="MoogLadders">
+    <GROUP id="{9ED2B19E-EB17-4DD0-4057-05BD1938AC0C}" name="src">
+      <GROUP id="{F4E1F5FE-F1A5-1634-3496-B229AEB6FBCE}" name="Misc">
+        <FILE id="Ct7Gzo" name="LadderFilter.cpp" compile="1" resource="0"
+              file="Source/LadderFilter.cpp"/>
+        <FILE id="T2P8ht" name="LadderFilter.h" compile="0" resource="0" file="Source/LadderFilter.h"/>
+        <FILE id="pkW16y" name="Utility.cpp" compile="1" resource="0" file="Source/Utility.cpp"/>
+      </GROUP>
+      <GROUP id="{C902E406-8187-1597-5170-D54C8B83FA38}" name="Simplified">
+        <FILE id="GOqH5z" name="SimplifiedMoog.cpp" compile="1" resource="0"
+              file="Source/SimplifiedMoog.cpp"/>
+        <FILE id="iKdIUK" name="SimplifiedMoog.h" compile="0" resource="0"
+              file="Source/SimplifiedMoog.h"/>
+      </GROUP>
+      <GROUP id="{BAD69F4F-57A1-8F21-97BB-444017A9EEF1}" name="Stilson">
+        <FILE id="Io2II3" name="Stilson.cpp" compile="1" resource="0" file="Source/Stilson.cpp"/>
+        <FILE id="cG04QO" name="Stilson.h" compile="0" resource="0" file="Source/Stilson.h"/>
+      </GROUP>
+      <GROUP id="{99808E48-6D82-986E-C0B9-3A2A0226C235}" name="Huovilainen">
+        <FILE id="Fe50tb" name="Huovilainen.cpp" compile="1" resource="0" file="Source/Huovilainen.cpp"/>
+        <FILE id="RePslh" name="Huovilainen.h" compile="0" resource="0" file="Source/Huovilainen.h"/>
+      </GROUP>
+      <FILE id="AFfgsr" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="EncCwB" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="Iwcshc" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="LIM37K" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+</JUCERPROJECT>
