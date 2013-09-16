@@ -19,6 +19,7 @@ protected:
     
     float _cutoff;
     float _resonance;
+    float _drive; 
     
 };
 
