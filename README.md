@@ -6,11 +6,11 @@ The project will build as an AU on OSX with the JUCE library. The filter classes
 
 # Licenses
 
-Filter Implementation | License | Original Source | Proprietary friendly? 
+Implementation | License | Original Source | Commercial Use? 
 ------------- | ------------- | ----------------- | -----------------
 Huovilainen  | GPLv3  | CSound | No 
 ImprovedMoog  | ISC  | Via Author | Yes
-SimplifiedMoog  | Spiritual CC BY-NC-SA  | C++ adaptation of DAFX 2nd ed code | No
+SimplifiedMoog  | Spiritual CC BY-NC-SA  | Transliteration of DAFX example | No
 Stilson | None | Moog~ by D. Lowenfels | Unknown
 
 ## ToDo
