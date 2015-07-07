@@ -97,7 +97,6 @@ public:
             
             // Scale stateful output by Q
             _output *= _Q;
-            
         }
     }
     

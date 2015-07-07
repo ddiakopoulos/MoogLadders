@@ -10,7 +10,6 @@
 		08BD61EF1B4BFE650004E704 /* example_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61E31B4BFE650004E704 /* example_main.cpp */; };
 		08BD61F01B4BFE650004E704 /* huovilainen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61E41B4BFE650004E704 /* huovilainen.cpp */; };
 		08BD61F11B4BFE650004E704 /* improvedmoog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61E61B4BFE650004E704 /* improvedmoog.cpp */; };
-		08BD61F31B4BFE650004E704 /* simplifiedmoog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61EA1B4BFE650004E704 /* simplifiedmoog.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,7 +35,6 @@
 		08BD61E61B4BFE650004E704 /* improvedmoog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = improvedmoog.cpp; path = src/improvedmoog.cpp; sourceTree = "<group>"; };
 		08BD61E71B4BFE650004E704 /* improvedmoog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = improvedmoog.h; path = src/improvedmoog.h; sourceTree = "<group>"; };
 		08BD61E91B4BFE650004E704 /* ladderfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ladderfilter.h; path = src/ladderfilter.h; sourceTree = "<group>"; };
-		08BD61EA1B4BFE650004E704 /* simplifiedmoog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = simplifiedmoog.cpp; path = src/simplifiedmoog.cpp; sourceTree = "<group>"; };
 		08BD61EB1B4BFE650004E704 /* simplifiedmoog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simplifiedmoog.h; path = src/simplifiedmoog.h; sourceTree = "<group>"; };
 		08BD61ED1B4BFE650004E704 /* stilson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stilson.h; path = src/stilson.h; sourceTree = "<group>"; };
 		08BD61EE1B4BFE650004E704 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = src/util.h; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 				08BD61E61B4BFE650004E704 /* improvedmoog.cpp */,
 				08BD61E71B4BFE650004E704 /* improvedmoog.h */,
 				08BD61E91B4BFE650004E704 /* ladderfilter.h */,
-				08BD61EA1B4BFE650004E704 /* simplifiedmoog.cpp */,
 				08BD61EB1B4BFE650004E704 /* simplifiedmoog.h */,
 				08BD61ED1B4BFE650004E704 /* stilson.h */,
 				08BD61EE1B4BFE650004E704 /* util.h */,
@@ -171,7 +168,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08BD61F31B4BFE650004E704 /* simplifiedmoog.cpp in Sources */,
 				08BD61F01B4BFE650004E704 /* huovilainen.cpp in Sources */,
 				08BD61EF1B4BFE650004E704 /* example_main.cpp in Sources */,
 				08BD61F11B4BFE650004E704 /* improvedmoog.cpp in Sources */,
