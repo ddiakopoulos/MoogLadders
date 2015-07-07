@@ -20,6 +20,9 @@
 
 /* Begin PBXFileReference section */
 		08BD61D01B4BFB9D0004E704 /* MoogLadders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MoogLadders; sourceTree = BUILT_PRODUCTS_DIR; };
+		08BD61DF1B4BFDF40004E704 /* catch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
+		08BD61E11B4BFDF40004E704 /* RtAudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
+		08BD61E21B4BFDF40004E704 /* RtAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +39,8 @@
 		08BD61C71B4BFB9D0004E704 = {
 			isa = PBXGroup;
 			children = (
-				08BD61DA1B4BFBD10004E704 /* Source */,
+				08BD61DA1B4BFBD10004E704 /* source */,
+				08BD61DD1B4BFDE40004E704 /* third_party */,
 				08BD61D11B4BFB9D0004E704 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,19 +53,39 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		08BD61DA1B4BFBD10004E704 /* Source */ = {
+		08BD61DA1B4BFBD10004E704 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				08BD61DC1B4BFC810004E704 /* Filters */,
 			);
-			name = Source;
+			name = source;
 			sourceTree = "<group>";
 		};
-		08BD61DC1B4BFC810004E704 /* Filters */ = {
+		08BD61DD1B4BFDE40004E704 /* third_party */ = {
 			isa = PBXGroup;
 			children = (
+				08BD61DE1B4BFDF40004E704 /* catch */,
+				08BD61E01B4BFDF40004E704 /* rtaudio */,
 			);
-			name = Filters;
+			name = third_party;
+			sourceTree = "<group>";
+		};
+		08BD61DE1B4BFDF40004E704 /* catch */ = {
+			isa = PBXGroup;
+			children = (
+				08BD61DF1B4BFDF40004E704 /* catch.hpp */,
+			);
+			name = catch;
+			path = third_party/catch;
+			sourceTree = "<group>";
+		};
+		08BD61E01B4BFDF40004E704 /* rtaudio */ = {
+			isa = PBXGroup;
+			children = (
+				08BD61E11B4BFDF40004E704 /* RtAudio.cpp */,
+				08BD61E21B4BFDF40004E704 /* RtAudio.h */,
+			);
+			name = rtaudio;
+			path = third_party/rtaudio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
