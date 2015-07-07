@@ -6,8 +6,6 @@ The ladder structure consists of four one-pole filters and a global negative fee
 
 More recently, a simplified model (based on the Huovilainen implementation) was presented in the book DAFX: Digital Audio Effects (2011) edited by Udo Zolzer. In 2013, an improved model was introduced by D'Angelo and Valimaki at the International Conference on Acoustics, Speech, and Signal Processing (ICASSP). 
 
-This project contains implementations of the Silson, Huovilainen, Simplified Huovilainen, and Improved models.
-
 The filter classes do not rely on the use of any external libraries and can be used with little to no modification in other DSP projects. The project includes a test app that makes uses of RTAudio for cross-platform audio output. 
 
 # Models & Licenses
