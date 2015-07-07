@@ -66,12 +66,12 @@ public:
         computeCutoff(_cutoff);
     }
     
-    ~StilsonMoog()
+    virtual ~StilsonMoog()
     {
         
     }
     
-    virtual void processSamples (float* samples, int numSamples) noexcept override
+    virtual void processSamples(float * samples, int numSamples) noexcept override
     {
         float local_temp_state;
         

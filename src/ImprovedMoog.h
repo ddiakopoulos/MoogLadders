@@ -66,7 +66,7 @@ public:
         _drive = 0.05;
     }
     
-    ~ImprovedMoog()
+    virtual ~ImprovedMoog()
     {
         delete ladder;
     }

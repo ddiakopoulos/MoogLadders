@@ -1,3 +1,5 @@
+#pragma comment(user, "license")
+
 #pragma once
 
 #ifndef MOOG_UTIL_H
@@ -16,6 +18,8 @@
 #define MOOG_2_SQRTPI  1.12837916709551257389615890312154517
 #define MOOG_SQRT2     1.41421356237309504880168872420969808
 #define MOOG_SQRT1_2   0.707106781186547524400844362104849039
+
+#define SNAP_TO_ZERO(n)    if (! (n < -1.0e-8 || n > 1.0e-8)) n = 0;
 
 // Linear interpolation, used to crossfade a gain table
 inline float moog_lerp(float amount, float a, float b)

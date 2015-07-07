@@ -47,7 +47,7 @@ public:
         computeResonance(0.1f);
     }
     
-    ~SimplifiedMoog()
+    virtual ~SimplifiedMoog()
     {
         
     }
@@ -59,7 +59,7 @@ public:
      
     // With resampling, numSamples should be 2x the frame size of the existing sample rate.
     // The output of this filter needs to be run through a decimator to return to the original samplerate.
-    virtual void processSamples (float* samples, int numSamples) noexcept override
+    virtual void processSamples(float * samples, int numSamples) noexcept override
     {
         // Processing still happens at sample rate...
         for (int samp = 0; samp < numSamples; ++samp)

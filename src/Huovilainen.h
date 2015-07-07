@@ -58,7 +58,7 @@ public:
         computeResonance(0.1f);
     }
     
-    ~HuovilainenMoog()
+    virtual ~HuovilainenMoog()
     {
         
     }
