@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		08BD61EF1B4BFE650004E704 /* example_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61E31B4BFE650004E704 /* example_main.cpp */; };
-		08BD61F01B4BFE650004E704 /* huovilainen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61E41B4BFE650004E704 /* huovilainen.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,7 +28,6 @@
 		08BD61E11B4BFDF40004E704 /* RtAudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
 		08BD61E21B4BFDF40004E704 /* RtAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
 		08BD61E31B4BFE650004E704 /* example_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = example_main.cpp; path = src/example_main.cpp; sourceTree = "<group>"; };
-		08BD61E41B4BFE650004E704 /* huovilainen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = huovilainen.cpp; path = src/huovilainen.cpp; sourceTree = "<group>"; };
 		08BD61E51B4BFE650004E704 /* huovilainen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = huovilainen.h; path = src/huovilainen.h; sourceTree = "<group>"; };
 		08BD61E71B4BFE650004E704 /* improvedmoog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = improvedmoog.h; path = src/improvedmoog.h; sourceTree = "<group>"; };
 		08BD61E91B4BFE650004E704 /* ladderfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ladderfilter.h; path = src/ladderfilter.h; sourceTree = "<group>"; };
@@ -71,7 +69,6 @@
 			children = (
 				08BD61E31B4BFE650004E704 /* example_main.cpp */,
 				08BD61E91B4BFE650004E704 /* ladderfilter.h */,
-				08BD61E41B4BFE650004E704 /* huovilainen.cpp */,
 				08BD61E51B4BFE650004E704 /* huovilainen.h */,
 				08BD61E71B4BFE650004E704 /* improvedmoog.h */,
 				08BD61EB1B4BFE650004E704 /* simplifiedmoog.h */,
@@ -165,7 +162,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08BD61F01B4BFE650004E704 /* huovilainen.cpp in Sources */,
 				08BD61EF1B4BFE650004E704 /* example_main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
