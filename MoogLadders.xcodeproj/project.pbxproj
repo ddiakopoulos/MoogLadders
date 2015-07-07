@@ -52,8 +52,16 @@
 		08BD61DA1B4BFBD10004E704 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				08BD61DC1B4BFC810004E704 /* Filters */,
 			);
 			name = Source;
+			sourceTree = "<group>";
+		};
+		08BD61DC1B4BFC810004E704 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Filters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
