@@ -5,6 +5,8 @@
 #ifndef SIMPLIFIED_LADDER_H
 #define SIMPLIFIED_LADDER_H
 
+#include "LadderFilter.h"
+
 /*
 The simplified nonlinear Moog filter is based on the full Huovilainen model,
 with five nonlinear (tanh) functions (4 first-order sections and a feedback).
