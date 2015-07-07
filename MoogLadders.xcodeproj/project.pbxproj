@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08BD61EF1B4BFE650004E704 /* example_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61E31B4BFE650004E704 /* example_main.cpp */; };
+		08BD61F91B4C07F30004E704 /* AudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61F61B4C07F30004E704 /* AudioDevice.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,9 @@
 		08BD61EB1B4BFE650004E704 /* simplifiedmoog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simplifiedmoog.h; path = src/simplifiedmoog.h; sourceTree = "<group>"; };
 		08BD61ED1B4BFE650004E704 /* stilson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stilson.h; path = src/stilson.h; sourceTree = "<group>"; };
 		08BD61EE1B4BFE650004E704 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = src/util.h; sourceTree = "<group>"; };
+		08BD61F61B4C07F30004E704 /* AudioDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AudioDevice.cpp; path = src/AudioDevice.cpp; sourceTree = "<group>"; };
+		08BD61F71B4C07F30004E704 /* AudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioDevice.h; path = src/AudioDevice.h; sourceTree = "<group>"; };
+		08BD61F81B4C07F30004E704 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RingBuffer.h; path = src/RingBuffer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,13 +71,13 @@
 		08BD61DA1B4BFBD10004E704 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				08BD61F51B4C07E60004E704 /* extra */,
 				08BD61E31B4BFE650004E704 /* example_main.cpp */,
 				08BD61E91B4BFE650004E704 /* ladderfilter.h */,
 				08BD61E51B4BFE650004E704 /* huovilainen.h */,
 				08BD61E71B4BFE650004E704 /* improvedmoog.h */,
 				08BD61EB1B4BFE650004E704 /* simplifiedmoog.h */,
 				08BD61ED1B4BFE650004E704 /* stilson.h */,
-				08BD61EE1B4BFE650004E704 /* util.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -104,6 +108,17 @@
 			);
 			name = rtaudio;
 			path = third_party/rtaudio;
+			sourceTree = "<group>";
+		};
+		08BD61F51B4C07E60004E704 /* extra */ = {
+			isa = PBXGroup;
+			children = (
+				08BD61EE1B4BFE650004E704 /* util.h */,
+				08BD61F61B4C07F30004E704 /* AudioDevice.cpp */,
+				08BD61F71B4C07F30004E704 /* AudioDevice.h */,
+				08BD61F81B4C07F30004E704 /* RingBuffer.h */,
+			);
+			name = extra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08BD61F91B4C07F30004E704 /* AudioDevice.cpp in Sources */,
 				08BD61EF1B4BFE650004E704 /* example_main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

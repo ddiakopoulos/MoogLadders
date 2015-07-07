@@ -8,7 +8,7 @@ More recently, a simplified model (based on the Huovilainen implementation) was 
 
 This project contains implementations of the Silson, Huovilainen, Simplified Huovilainen, and Improved models.
 
-The project will build as an AU on OSX with the JUCE library. The filter classes do not rely on the use of any external libraries or classes and can be used with little to no modification in other DSP projects.
+The filter classes do not rely on the use of any external libraries and can be used with little to no modification in other DSP projects. The project includes a test app that makes uses of RTAudio for cross-platform audio output. 
 
 # Licenses
 

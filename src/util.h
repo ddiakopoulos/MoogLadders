@@ -19,6 +19,9 @@
 #define MOOG_SQRT2     1.41421356237309504880168872420969808
 #define MOOG_SQRT1_2   0.707106781186547524400844362104849039
 
+#define NO_COPY(C) C(const C &) = delete; C & operator = (const C &) = delete
+#define NO_MOVE(C) NO_COPY(C); C(C &&) = delete; C & operator = (const C &&) = delete
+
 #define SNAP_TO_ZERO(n)    if (! (n < -1.0e-8 || n > 1.0e-8)) n = 0;
 
 // Linear interpolation, used to crossfade a gain table
