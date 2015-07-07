@@ -5,7 +5,7 @@
 #ifndef LADDERFILTER_H
 #define LADDERFILTER_H
 
-class LadderFilter
+class LadderFilterBase
 {
 public:
     virtual ~LadderFilter() {};

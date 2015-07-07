@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08BD61EF1B4BFE650004E704 /* example_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61E31B4BFE650004E704 /* example_main.cpp */; };
 		08BD61F91B4C07F30004E704 /* AudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61F61B4C07F30004E704 /* AudioDevice.cpp */; };
+		08BD61FB1B4C0B3F0004E704 /* ExampleMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61FA1B4C0B3F0004E704 /* ExampleMain.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,16 +28,12 @@
 		08BD61DF1B4BFDF40004E704 /* catch.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = catch.hpp; sourceTree = "<group>"; };
 		08BD61E11B4BFDF40004E704 /* RtAudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RtAudio.cpp; sourceTree = "<group>"; };
 		08BD61E21B4BFDF40004E704 /* RtAudio.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RtAudio.h; sourceTree = "<group>"; };
-		08BD61E31B4BFE650004E704 /* example_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = example_main.cpp; path = src/example_main.cpp; sourceTree = "<group>"; };
-		08BD61E51B4BFE650004E704 /* huovilainen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = huovilainen.h; path = src/huovilainen.h; sourceTree = "<group>"; };
-		08BD61E71B4BFE650004E704 /* improvedmoog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = improvedmoog.h; path = src/improvedmoog.h; sourceTree = "<group>"; };
-		08BD61E91B4BFE650004E704 /* ladderfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ladderfilter.h; path = src/ladderfilter.h; sourceTree = "<group>"; };
-		08BD61EB1B4BFE650004E704 /* simplifiedmoog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = simplifiedmoog.h; path = src/simplifiedmoog.h; sourceTree = "<group>"; };
-		08BD61ED1B4BFE650004E704 /* stilson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stilson.h; path = src/stilson.h; sourceTree = "<group>"; };
-		08BD61EE1B4BFE650004E704 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = src/util.h; sourceTree = "<group>"; };
+		08BD61EE1B4BFE650004E704 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = src/Util.h; sourceTree = "<group>"; };
 		08BD61F61B4C07F30004E704 /* AudioDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AudioDevice.cpp; path = src/AudioDevice.cpp; sourceTree = "<group>"; };
 		08BD61F71B4C07F30004E704 /* AudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioDevice.h; path = src/AudioDevice.h; sourceTree = "<group>"; };
 		08BD61F81B4C07F30004E704 /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RingBuffer.h; path = src/RingBuffer.h; sourceTree = "<group>"; };
+		08BD61FA1B4C0B3F0004E704 /* ExampleMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExampleMain.cpp; path = src/ExampleMain.cpp; sourceTree = "<group>"; };
+		08BD61FD1B4C0C480004E704 /* LadderFilterBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LadderFilterBase.h; path = src/LadderFilterBase.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,13 +67,10 @@
 		08BD61DA1B4BFBD10004E704 /* source */ = {
 			isa = PBXGroup;
 			children = (
+				08BD61FA1B4C0B3F0004E704 /* ExampleMain.cpp */,
 				08BD61F51B4C07E60004E704 /* extra */,
-				08BD61E31B4BFE650004E704 /* example_main.cpp */,
-				08BD61E91B4BFE650004E704 /* ladderfilter.h */,
-				08BD61E51B4BFE650004E704 /* huovilainen.h */,
-				08BD61E71B4BFE650004E704 /* improvedmoog.h */,
-				08BD61EB1B4BFE650004E704 /* simplifiedmoog.h */,
-				08BD61ED1B4BFE650004E704 /* stilson.h */,
+				08BD61FC1B4C0C2A0004E704 /* models */,
+				08BD61FD1B4C0C480004E704 /* LadderFilterBase.h */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -113,12 +106,19 @@
 		08BD61F51B4C07E60004E704 /* extra */ = {
 			isa = PBXGroup;
 			children = (
-				08BD61EE1B4BFE650004E704 /* util.h */,
+				08BD61EE1B4BFE650004E704 /* Util.h */,
 				08BD61F61B4C07F30004E704 /* AudioDevice.cpp */,
 				08BD61F71B4C07F30004E704 /* AudioDevice.h */,
 				08BD61F81B4C07F30004E704 /* RingBuffer.h */,
 			);
 			name = extra;
+			sourceTree = "<group>";
+		};
+		08BD61FC1B4C0C2A0004E704 /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,7 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08BD61F91B4C07F30004E704 /* AudioDevice.cpp in Sources */,
-				08BD61EF1B4BFE650004E704 /* example_main.cpp in Sources */,
+				08BD61FB1B4C0B3F0004E704 /* ExampleMain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
