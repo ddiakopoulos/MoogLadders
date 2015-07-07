@@ -22,9 +22,8 @@ with very large resonance values and does not enter self-oscillation.
 
 References: Stilson and Smith (1996), DAFX - Zolzer (ed) (2nd ed)
 Original implementation: Tim Stilson
- */ 
+*/
 
-// Precomputed gaintable
 static float gaintable[199] =
 {
     0.999969, 0.990082, 0.980347, 0.970764, 0.961304, 0.951996, 0.94281, 0.933777, 0.924866, 0.916077,
@@ -48,7 +47,6 @@ static float gaintable[199] =
     0.27829, 0.276825, 0.275391, 0.273956, 0.272552, 0.271118, 0.269745, 0.268341, 0.266968, 0.265594,
     0.264252, 0.262909, 0.261566, 0.260223, 0.258911, 0.257599, 0.256317, 0.255035, 0.25375
 };
-
 
 class StilsonMoog : public LadderFilter
 {
@@ -79,7 +77,6 @@ public:
         
         for (int samp = 0; samp < numSamples; ++samp)
         {
-            
             // Scale by arbitrary value on account of our saturation function
             const float input = samples[samp] * 0.65f;
             
