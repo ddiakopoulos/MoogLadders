@@ -49,9 +49,10 @@ public:
         ladder = new LadderData();
         memset(&ladder, 0, sizeof(LadderData));
 
-        _cutoff = 100;
-        _resonance = .05;
         _drive = 0.05;
+
+		SetCutoff(1000.0f);
+        SetResonance(0.05f);
     }
     
     virtual ~ImprovedMoog()

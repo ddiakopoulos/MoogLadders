@@ -55,16 +55,14 @@ public:
     
     StilsonMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
-        _resonance = 0.10f;
-        _cutoff = 1000.0f;
-        
         _p = 0.0f;
         _Q = 0.0f;
         
         for (int i = 0; i < 4; i++)
             _state[i] = 0.0;
         
-        SetCutoff(_cutoff);
+        SetCutoff(1000.0f);
+        SetResonance(0.10f);
     }
     
     virtual ~StilsonMoog()
