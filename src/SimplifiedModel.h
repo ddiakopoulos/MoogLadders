@@ -27,7 +27,7 @@ class SimplifiedMoog : public LadderFilterBase
     
 public:
     
-    SimplifiedMoog()
+    SimplifiedMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
         // To keep the overall level approximately constant, comp should be set
         // to 0.5 resulting in a 6 dB passband gain decrease at the maximum resonance
@@ -43,8 +43,8 @@ public:
             _stageZ1[i] = 0.0;
         }
         
-        computeCutoff(1000);
-        computeResonance(0.1f);
+        SetCutoff(1000.0f);
+        SetResonance(0.10f);
     }
     
     virtual ~SimplifiedMoog()
@@ -59,10 +59,10 @@ public:
      
     // With resampling, numSamples should be 2x the frame size of the existing sample rate.
     // The output of this filter needs to be run through a decimator to return to the original samplerate.
-    virtual void processSamples(float * samples, int numSamples) noexcept override
+    virtual void Process(float * samples, uint32_t n) noexcept override
     {
         // Processing still happens at sample rate...
-        for (int samp = 0; samp < numSamples; ++samp)
+        for (int samp = 0; samp < n; ++samp)
         {
             for (int stage = 0; stage < 4; ++stage)
             {
@@ -91,18 +91,18 @@ public:
         
     }
     
-    virtual void computeResonance(float r) override
+    virtual void SetResonance(float r) override
     {
         // Direct mapping (no table or polynomial)
         _resonance = r;
     }
     
-    virtual void computeCutoff(float c) override
+    virtual void SetCutoff(float c) override
     {
         _cutoff = c;
         
-        float fs = 44100;
-        float x2 = 2*fs;
+        float fs = sampleRate;
+        float x2 = 2 * fs;
         
         // Normalized cutoff [0, 1] in radians: ((2*pi) * cutoff / samplerate)
         _g = (2 * M_PI) * _cutoff / x2; // feedback coefficient at fs*2 because of doublesampling

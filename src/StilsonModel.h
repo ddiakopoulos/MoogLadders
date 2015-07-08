@@ -53,17 +53,18 @@ class StilsonMoog : public LadderFilterBase
     
 public:
     
-    StilsonMoog()
+    StilsonMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
         _resonance = 0.10f;
         _cutoff = 1000.0f;
+        
         _p = 0.0f;
         _Q = 0.0f;
         
         for (int i = 0; i < 4; i++)
             _state[i] = 0.0;
         
-        computeCutoff(_cutoff);
+        SetCutoff(_cutoff);
     }
     
     virtual ~StilsonMoog()
@@ -71,11 +72,11 @@ public:
         
     }
     
-    virtual void processSamples(float * samples, int numSamples) noexcept override
+    virtual void Process(float * samples, uint32_t n) noexcept override
     {
         float local_temp_state;
         
-        for (int samp = 0; samp < numSamples; ++samp)
+        for (int samp = 0; samp < n; ++samp)
         {
             // Scale by arbitrary value on account of our saturation function
             const float input = samples[samp] * 0.65f;
@@ -100,11 +101,11 @@ public:
         }
     }
     
-    virtual void computeResonance(float res) override
+    virtual void SetResonance(float r) override
     {
-        res = moog_min(res, 1);
+        r = moog_min(r, 1);
         
-        _resonance = res;
+        _resonance = r;
         
         float ix, ixfrac;
         int ixint;
@@ -113,15 +114,15 @@ public:
         ixint = floor(ix);
         ixfrac = ix - ixint;
         
-        _Q = res * moog_lerp(ixfrac, gaintable[ ixint + 99 ], gaintable[ ixint + 100 ]);
+        _Q = r * moog_lerp(ixfrac, gaintable[ ixint + 99 ], gaintable[ ixint + 100 ]);
     }
     
-    virtual void computeCutoff(float cut) override
+    virtual void SetCutoff(float c) override
     {
-        _cutoff = cut;
+        _cutoff = c;
         
         // Normalized cutoff between [0, 1]
-        float fc = (2 * _cutoff) / 44100;
+        float fc = (2 * _cutoff) / sampleRate;
         
         float x2 = fc*fc;
         float x3 = fc*x2;
@@ -129,8 +130,7 @@ public:
         // Frequency & amplitude correction (Cubic Fit)
         _p = -0.69346 * x3 - 0.59515 * x2 + 3.2937 * fc - 1.0072;
         
-        // Need to recompute resonance
-        computeResonance(_resonance);
+        SetResonance(_resonance);
     }
 
 private:

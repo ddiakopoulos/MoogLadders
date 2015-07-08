@@ -44,7 +44,7 @@ class ImprovedMoog : public LadderFilterBase
     
 public:
     
-    ImprovedMoog()
+    ImprovedMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
         ladder = new LadderData();
         
@@ -71,12 +71,12 @@ public:
         delete ladder;
     }
     
-    virtual void processSamples (float * samples, int numSamples) noexcept override
+    virtual void Process(float * samples, uint32_t n) noexcept override
     {
         double dV1, dV2, dV3, dV4;
         float inSample;
         
-        for (int i = 0; i < numSamples; i++)
+        for (int i = 0; i < n; i++)
         {
             inSample = samples[i];
             
@@ -104,12 +104,12 @@ public:
         }
     }
 
-    virtual void computeResonance(float r) override
+    virtual void SetResonance(float r) override
     {
         _resonance = r;
     }
     
-    virtual void computeCutoff(float c) override
+    virtual void SetCutoff(float c) override
     {
         _cutoff = c;
         _x = M_PI * _cutoff / 44100;

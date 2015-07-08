@@ -34,7 +34,7 @@ class HuovilainenMoog : public LadderFilterBase
     
 public:
     
-    HuovilainenMoog()
+    HuovilainenMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
         _resonance = 0.10f;
         _resonanceQuad = 0.0f;
@@ -43,19 +43,18 @@ public:
         _acr = 0.0f;
         _tune = 0.0f;
         
-        float V = 1.22070313;
-        _thermal = (1.0 / V);
-        
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++)
+        {
             _stage[i] = 0.0;
             _stageZ1[i] = 0.0;
         }
         
         for (int i = 0; i < 3; i++)
-            _stageTANH[i] = 0.0;
+        {
+           _stageTANH[i] = 0.0;
+        }
         
-        computeCutoff(1000);
-        computeResonance(0.1f);
+        SetTransistorVoltage();
     }
     
     virtual ~HuovilainenMoog()
@@ -63,17 +62,16 @@ public:
         
     }
     
-    virtual void processSamples(float* samples, int numSamples) noexcept override
+    virtual void Process(float * samples, uint32_t n) noexcept override
     {
         // 2v = thermal
         double local_output = 0;
         
-        for (int samp = 0; samp < numSamples; ++samp)
+        for (int samp = 0; samp < n; ++samp)
         {
             // 2x oversampling
             for (int j = 0; j < 2; ++j)
             {
-                
                 // Filter stages (Huovilainen Fig 22)
                 for (int stage = 0; stage < 4; ++stage)
                 {
@@ -107,7 +105,7 @@ public:
         }
     }
     
-    virtual void computeResonance(float r) override
+    virtual void SetResonance(float r) override
     {
         if (r < 0)
             _resonance = 0;
@@ -117,12 +115,12 @@ public:
         _resonanceQuad = (4.0 * (double) _resonance * _acr); // (Modified Huovilainen Fig 23)
     }
     
-    virtual void computeCutoff(float c) override
+    virtual void SetCutoff(float c) override
     {
         _cutoff = c;
         
         // Normalized Cutoff
-        double fc =  (double)(_cutoff / 44100);
+        double fc =  (double)(_cutoff / sampleRate);
         
         double x_2 = fc/2;
         double x2 = fc*fc;
@@ -138,16 +136,16 @@ public:
         // The coefficient g determines the cutoff frequency
         _tune = (1.0 - exp(-((2*M_PI)*x_2*fcr))) / _thermal;
         
-        computeResonance(_resonance);
+        SetResonance(_resonance);
     }
 
-    void setTransistorVoltage(const float & V = 1.22070313)
+    void SetTransistorVoltage(const float V = 1.22070313)
     {
         // Base-emitter voltages of the transistors
-        _thermal = (1.0 / V);
+        _thermal = (1.0f / V);
         
-        computeCutoff(1000);
-        computeResonance(0.1f);
+        SetCutoff(1000.0f);
+        SetResonance(0.10f);
     }
     
 private:
