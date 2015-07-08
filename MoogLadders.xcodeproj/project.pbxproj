@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		08BD61F91B4C07F30004E704 /* AudioDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61F61B4C07F30004E704 /* AudioDevice.cpp */; };
 		08BD61FB1B4C0B3F0004E704 /* ExampleMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61FA1B4C0B3F0004E704 /* ExampleMain.cpp */; };
+		08BD62071B4D5BCE0004E704 /* RtAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08BD61E11B4BFDF40004E704 /* RtAudio.cpp */; };
+		08BD62091B4D5D1E0004E704 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08BD62081B4D5D1E0004E704 /* CoreServices.framework */; };
+		08BD620B1B4D5D250004E704 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08BD620A1B4D5D250004E704 /* CoreFoundation.framework */; };
+		08BD620D1B4D5D2A0004E704 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08BD620C1B4D5D2A0004E704 /* CoreAudio.framework */; };
+		08BD620F1B4D5D310004E704 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 08BD620E1B4D5D310004E704 /* libpthread.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +48,10 @@
 		08BD62041B4D57460004E704 /* StilsonPirkleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StilsonPirkleModel.h; path = src/StilsonPirkleModel.h; sourceTree = "<group>"; };
 		08BD62051B4D57780004E704 /* HalfBandFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HalfBandFilter.h; path = src/HalfBandFilter.h; sourceTree = "<group>"; };
 		08BD62061B4D57780004E704 /* NoiseGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoiseGenerator.h; path = src/NoiseGenerator.h; sourceTree = "<group>"; };
+		08BD62081B4D5D1E0004E704 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		08BD620A1B4D5D250004E704 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		08BD620C1B4D5D2A0004E704 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		08BD620E1B4D5D310004E704 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +59,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08BD620F1B4D5D310004E704 /* libpthread.dylib in Frameworks */,
+				08BD620D1B4D5D2A0004E704 /* CoreAudio.framework in Frameworks */,
+				08BD620B1B4D5D250004E704 /* CoreFoundation.framework in Frameworks */,
+				08BD62091B4D5D1E0004E704 /* CoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +75,7 @@
 				08BD61DA1B4BFBD10004E704 /* source */,
 				08BD61DD1B4BFDE40004E704 /* third_party */,
 				08BD61D11B4BFB9D0004E704 /* Products */,
+				08BD62101B4D5D4C0004E704 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,6 +153,17 @@
 			name = models;
 			sourceTree = "<group>";
 		};
+		08BD62101B4D5D4C0004E704 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08BD620E1B4D5D310004E704 /* libpthread.dylib */,
+				08BD620C1B4D5D2A0004E704 /* CoreAudio.framework */,
+				08BD620A1B4D5D250004E704 /* CoreFoundation.framework */,
+				08BD62081B4D5D1E0004E704 /* CoreServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08BD61F91B4C07F30004E704 /* AudioDevice.cpp in Sources */,
+				08BD62071B4D5BCE0004E704 /* RtAudio.cpp in Sources */,
 				08BD61FB1B4C0B3F0004E704 /* ExampleMain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +306,11 @@
 		08BD61D81B4BFB9D0004E704 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					__MACOSX_CORE__,
+					"$(inherited)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -292,6 +323,7 @@
 		08BD61D91B4BFB9D0004E704 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = __MACOSX_CORE__;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,

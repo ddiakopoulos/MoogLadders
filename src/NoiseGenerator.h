@@ -32,9 +32,9 @@ public:
         
     }
     
-    std::vector<float> produce(NoiseType t, int sampleRate, float seconds)
+    std::vector<float> produce(NoiseType t, int sampleRate, int channels, float seconds)
     {
-        int samplesToGenerate = sampleRate * seconds;
+        int samplesToGenerate = sampleRate * seconds * channels;
         std::vector<float> samples;
         samples.resize(samplesToGenerate);
         

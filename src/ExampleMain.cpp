@@ -21,9 +21,11 @@ int main()
     
     NoiseGenerator gen;
     
-    std::vector<float> noiseSamples = gen.produce(NoiseGenerator::NoiseType::WHITE, desiredSampleRate, 5.0);
+    std::vector<float> noiseSamples = gen.produce(NoiseGenerator::NoiseType::WHITE, desiredSampleRate, 2, 5.0);
     
-    //device.Play(samples);
+    device.Play(noiseSamples);
+    
+    std::this_thread::sleep_for(std::chrono::seconds(5));
     
     return 0;
 }

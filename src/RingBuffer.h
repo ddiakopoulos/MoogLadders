@@ -33,6 +33,8 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include <atomic>
 #include <assert.h>
+#include <stdio.h>
+#include <string.h>
 
 template <typename T>
 class RingBufferT {
@@ -112,12 +114,12 @@ class RingBufferT {
 			size_t countA = mAllocatedSize - writeIndex;
 			size_t countB = count - countA;
 
-			std::memcpy( mData + writeIndex, array, countA * sizeof( T ) );
-			std::memcpy( mData, array + countA, countB * sizeof( T ) );
+			memcpy( mData + writeIndex, array, countA * sizeof( T ) );
+			memcpy( mData, array + countA, countB * sizeof( T ) );
 			writeIndexAfter -= mAllocatedSize;
 		}
 		else {
-			std::memcpy( mData + writeIndex, array, count * sizeof( T ) );
+			memcpy( mData + writeIndex, array, count * sizeof( T ) );
 			if( writeIndexAfter == mAllocatedSize )
 				writeIndexAfter = 0;
 		}
@@ -142,13 +144,13 @@ class RingBufferT {
 			size_t countA = mAllocatedSize - readIndex;
 			size_t countB = count - countA;
 
-			std::memcpy( array, mData + readIndex, countA * sizeof( T ) );
-			std::memcpy( array + countA, mData, countB * sizeof( T ) );
+			memcpy( array, mData + readIndex, countA * sizeof( T ) );
+			memcpy( array + countA, mData, countB * sizeof( T ) );
 
 			readIndexAfter -= mAllocatedSize;
 		}
 		else {
-			std::memcpy( array, mData + readIndex, count * sizeof( T ) );
+			memcpy( array, mData + readIndex, count * sizeof( T ) );
 			if( readIndexAfter == mAllocatedSize )
 				readIndexAfter = 0;
 		}
