@@ -105,7 +105,7 @@ public:
         float x2 = 2 * fs;
         
         // Normalized cutoff [0, 1] in radians: ((2*pi) * cutoff / samplerate)
-        _g = (2 * M_PI) * _cutoff / x2; // feedback coefficient at fs*2 because of doublesampling
+        _g = (2 * MOOG_PI) * _cutoff / x2; // feedback coefficient at fs*2 because of doublesampling
         
         // FIR part with gain g
         _h = _g / 1.3;

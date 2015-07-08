@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{edf3460b-f488-448c-8c3f-85ffe776786c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\extra">
+      <UniqueIdentifier>{d70aecb5-ab52-436d-81c8-be23540f54e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\models">
+      <UniqueIdentifier>{ccf12589-b40a-4e34-988a-4d034139672e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party">
+      <UniqueIdentifier>{59f10d26-05be-481b-814b-519c15e7edec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_party\RtAudio">
+      <UniqueIdentifier>{ea010cd3-b299-4159-9c1a-0182a3804524}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\third_party\rtaudio\RtAudio.cpp">
+      <Filter>third_party\RtAudio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\AudioDevice.cpp">
+      <Filter>source\extra</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ExampleMain.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\third_party\rtaudio\RtAudio.h">
+      <Filter>third_party\RtAudio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\NoiseGenerator.h">
+      <Filter>source\extra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\RingBuffer.h">
+      <Filter>source\extra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\util.h">
+      <Filter>source\extra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\AudioDevice.h">
+      <Filter>source\extra</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HuovilainenModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ImprovedModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\LadderFilterBase.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\RKSimulationModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SimplifiedModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\StilsonModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\StilsonPirkleModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\AaronModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

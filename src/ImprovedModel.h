@@ -47,20 +47,8 @@ public:
     ImprovedMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
         ladder = new LadderData();
-        
-        ladder->V1prev = 0.0;
-        ladder->V2prev = 0.0;
-        ladder->V3prev = 0.0;
-        ladder->V4prev = 0.0;
-        ladder->tV1prev = 0.0;
-        ladder->tV2prev = 0.0;
-        ladder->tV3prev = 0.0;
-        ladder->tV4prev = 0.0;
-        ladder->dV1prev = 0.0;
-        ladder->dV2prev = 0.0;
-        ladder->dV3prev = 0.0;
-        ladder->dV4prev = 0.0;
-        
+        memset(&ladder, 0, sizeof(LadderData));
+
         _cutoff = 100;
         _resonance = .05;
         _drive = 0.05;
@@ -81,22 +69,22 @@ public:
             inSample = samples[i];
             
             dV1 = -_g * (tanh((_drive * inSample + _resonance * ladder->V4prev) / (2.0 * VT)) + ladder->tV1prev);
-            ladder->V1prev += (dV1 + ladder->dV1prev) / (2.0 * 44100.0f);
+            ladder->V1prev += (dV1 + ladder->dV1prev) / (2.0 * sampleRate);
             ladder->dV1prev = dV1;
             ladder->tV1prev = tanh(ladder->V1prev / (2.0 * VT));
             
             dV2 = _g * (ladder->tV1prev - ladder->tV2prev);
-            ladder->V2prev += (dV2 + ladder->dV2prev) / (2.0 * 44100.0f);
+            ladder->V2prev += (dV2 + ladder->dV2prev) / (2.0 * sampleRate);
             ladder->dV2prev = dV2;
             ladder->tV2prev = tanh(ladder->V2prev / (2.0 * VT));
             
             dV3 = _g * (ladder->tV2prev - ladder->tV3prev);
-            ladder->V3prev += (dV3 + ladder->dV3prev) / (2.0 * 44100.0f);
+            ladder->V3prev += (dV3 + ladder->dV3prev) / (2.0 * sampleRate);
             ladder->dV3prev = dV3;
             ladder->tV3prev = tanh(ladder->V3prev / (2.0 * VT));
             
             dV4 = _g * (ladder->tV3prev - ladder->tV4prev);
-            ladder->V4prev += (dV4 + ladder->dV4prev) / (2.0 * 44100.0f);
+            ladder->V4prev += (dV4 + ladder->dV4prev) / (2.0 * sampleRate);
             ladder->dV4prev = dV4;
             ladder->tV4prev = tanh(ladder->V4prev / (2.0 * VT));
             
@@ -112,8 +100,8 @@ public:
     virtual void SetCutoff(float c) override
     {
         _cutoff = c;
-        _x = M_PI * _cutoff / 44100;
-        _g = 4.0 * M_PI * VT * _cutoff * (1.0 - _x) / (1.0 + _x);
+        _x = MOOG_PI * _cutoff / sampleRate;
+        _g = 4.0 * MOOG_PI * VT * _cutoff * (1.0 - _x) / (1.0 + _x);
     }
     
 private:
