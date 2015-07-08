@@ -5,7 +5,7 @@
 #ifndef STILSON_LADDER_H
 #define STILSON_LADDER_H
 
-#include "LadderFilter.h"
+#include "LadderFilterBase.h"
 
 /*
 A digital model of the classic Moog filter was presented first by Stilson and
@@ -48,7 +48,7 @@ static float gaintable[199] =
     0.264252, 0.262909, 0.261566, 0.260223, 0.258911, 0.257599, 0.256317, 0.255035, 0.25375
 };
 
-class StilsonMoog : public LadderFilter
+class StilsonMoog : public LadderFilterBase
 {
     
 public:
@@ -86,9 +86,9 @@ public:
             for (int pole = 0; pole < 4; ++pole)
             {
                 local_temp_state = _state[pole];
-                _output = UTIL_SATURATE(_output + _p * (_output - local_temp_state));
+                _output = moog_saturate(_output + _p * (_output - local_temp_state));
                 _state[pole] = _output;
-                _output = UTIL_SATURATE(_output + local_temp_state);
+                _output = moog_saturate(_output + local_temp_state);
             }
             
             SNAP_TO_ZERO (_output);
@@ -102,7 +102,7 @@ public:
     
     virtual void computeResonance(float res) override
     {
-        res = UTIL_MIN(res, 1);
+        res = moog_min(res, 1);
         
         _resonance = res;
         
@@ -113,7 +113,7 @@ public:
         ixint = floor(ix);
         ixfrac = ix - ixint;
         
-        _Q = res * UTIL_LINTERP(ixfrac, gaintable[ ixint + 99 ], gaintable[ ixint + 100 ]);
+        _Q = res * moog_lerp(ixfrac, gaintable[ ixint + 99 ], gaintable[ ixint + 100 ]);
     }
     
     virtual void computeCutoff(float cut) override

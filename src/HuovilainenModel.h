@@ -5,7 +5,7 @@
 #ifndef HUOVILAINEN_LADDER_H
 #define HUOVILAINEN_LADDER_H
 
-#include "LadderFilter.h"
+#include "LadderFilterBase.h"
 
 /*
 Huovilainen developed an improved and physically correct model of the Moog
@@ -29,7 +29,7 @@ http://music.columbia.edu/pipermail/music-dsp/2005-February/062778.html
 http://www.synthmaker.co.uk/dokuwiki/doku.php?id=tutorials:oversampling
 */ 
 
-class HuovilainenMoog : public LadderFilter
+class HuovilainenMoog : public LadderFilterBase
 {
     
 public:
@@ -66,7 +66,7 @@ public:
     virtual void processSamples(float* samples, int numSamples) noexcept override
     {
         // 2v = thermal
-        double local_output;
+        double local_output = 0;
         
         for (int samp = 0; samp < numSamples; ++samp)
         {
@@ -119,7 +119,7 @@ public:
     
     virtual void computeCutoff(float c) override
     {
-        _cutoff = cut;
+        _cutoff = c;
         
         // Normalized Cutoff
         double fc =  (double)(_cutoff / 44100);

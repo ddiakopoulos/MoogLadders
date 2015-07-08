@@ -5,7 +5,7 @@
 #ifndef SIMPLIFIED_LADDER_H
 #define SIMPLIFIED_LADDER_H
 
-#include "LadderFilter.h"
+#include "LadderFilterBase.h"
 
 /*
 The simplified nonlinear Moog filter is based on the full Huovilainen model,
@@ -22,7 +22,7 @@ http://music.columbia.edu/pipermail/music-dsp/2005-February/062778.html
 http://www.synthmaker.co.uk/dokuwiki/doku.php?id=tutorials:oversampling
 */
 
-class SimplifiedMoog : public LadderFilter
+class SimplifiedMoog : public LadderFilterBase
 {
     
 public:
@@ -99,7 +99,7 @@ public:
     
     virtual void computeCutoff(float c) override
     {
-        _cutoff = cut;
+        _cutoff = c;
         
         float fs = 44100;
         float x2 = 2*fs;

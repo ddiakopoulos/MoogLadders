@@ -7,6 +7,14 @@
 #include "AudioDevice.h"
 #include "NoiseGenerator.h"
 
+#include "StilsonModel.h"
+#include "StilsonPirkleModel.h"
+#include "SimplifiedModel.h"
+#include "ImprovedModel.h"
+#include "HuovilainenModel.h"
+#include "AaronModel.h"
+#include "RKSimulationModel.h"
+
 #include <thread>
 #include <chrono>
 #include <vector>
@@ -16,16 +24,17 @@ int main()
     AudioDevice::ListAudioDevices();
     
     int desiredSampleRate = 44100;
-    AudioDevice device(2, desiredSampleRate);
+    int desiredChannelCount = 2;
+    AudioDevice device(desiredChannelCount, desiredSampleRate);
     device.Open(device.info.id);
     
     NoiseGenerator gen;
     
-    std::vector<float> noiseSamples = gen.produce(NoiseGenerator::NoiseType::WHITE, desiredSampleRate, 2, 5.0);
+    std::vector<float> noiseSamples = gen.produce(NoiseGenerator::NoiseType::WHITE, desiredSampleRate, desiredChannelCount, 5.0);
     
     device.Play(noiseSamples);
     
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    //std::this_thread::sleep_for(std::chrono::seconds(5));
     
     return 0;
 }

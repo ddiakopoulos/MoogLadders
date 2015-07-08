@@ -5,7 +5,7 @@
 #ifndef AARON_LADDER_H
 #define AARON_LADDER_H
 
-#include "LadderFilter.h"
+#include "LadderFilterBase.h"
 
 // http://song-swap.com/MUMT618/aaron/Presentation/demo.html
 // http://song-swap.com/MUMT618/aaron/code/MoogVCF.h

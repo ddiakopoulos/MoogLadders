@@ -5,7 +5,7 @@
 #ifndef IMPROVED_LADDER_H
 #define IMPROVED_LADDER_H
 
-#include "LadderFilter.h"
+#include "LadderFilterBase.h"
 
 /*
 This model is based on a reference implementation of an algorithm developed by
@@ -39,7 +39,7 @@ struct LadderData
     double dV4prev;
 };
 
-class ImprovedMoog : public LadderFilter
+class ImprovedMoog : public LadderFilterBase
 {
     
 public:
@@ -74,12 +74,13 @@ public:
     virtual void processSamples (float * samples, int numSamples) noexcept override
     {
         double dV1, dV2, dV3, dV4;
+        float inSample;
         
         for (int i = 0; i < numSamples; i++)
         {
-            const float in = samples[i];
+            inSample = samples[i];
             
-            dV1 = -_g * (tanh((_drive * in[i] + _resonance * ladder->V4prev) / (2.0 * VT)) + ladder->tV1prev);
+            dV1 = -_g * (tanh((_drive * inSample + _resonance * ladder->V4prev) / (2.0 * VT)) + ladder->tV1prev);
             ladder->V1prev += (dV1 + ladder->dV1prev) / (2.0 * 44100.0f);
             ladder->dV1prev = dV1;
             ladder->tV1prev = tanh(ladder->V1prev / (2.0 * VT));
@@ -110,7 +111,7 @@ public:
     
     virtual void computeCutoff(float c) override
     {
-        _cutoff = cut;
+        _cutoff = c;
         _x = M_PI * _cutoff / 44100;
         _g = 4.0 * M_PI * VT * _cutoff * (1.0 - _x) / (1.0 + _x);
     }
