@@ -41,6 +41,7 @@ bool AudioDevice::Open(const int deviceId)
 		rtaudio->startStream();
 		return true;
 	}
+    
 	return false;
 }
 
@@ -73,7 +74,8 @@ bool AudioDevice::Play(const std::vector<float> & data)
 	while(writeCount < sizeInFrames)
 	{
 		bool status = buffer.write((data.data() + (writeCount * BUFFER_LENGTH)), BUFFER_LENGTH);
-		if (status) writeCount++;
+		if (status)
+            writeCount++;
 	}
 
 	return true;

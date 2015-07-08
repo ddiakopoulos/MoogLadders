@@ -6,9 +6,9 @@
 #define AUDIO_DEVICE_H
 
 // This file implements a simple sound file player based on RtAudio for testing / example purposes.
+
 #include "Util.h"
 #include "RingBuffer.h"
-
 #include "rtaudio/RtAudio.h"
 
 #include <iostream>
@@ -31,7 +31,6 @@ class AudioDevice
 {
     NO_MOVE(AudioDevice);
     std::unique_ptr<RtAudio> rtaudio;
-    
 public:
     
     DeviceInfo info;
