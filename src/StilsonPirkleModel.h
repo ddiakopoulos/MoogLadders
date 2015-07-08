@@ -12,4 +12,33 @@
 // http://www.willpirkle.com/Downloads/AN-8MoogHalfLadderFilter.pdf
 // http://www.willpirkle.com/fx-book/project-gallery/ => MoogLPF Project
 
+class StilsonPirkleMoog : public LadderFilterBase
+{
+    
+public:
+    
+    StilsonPirkleMoog(float sampleRate) : LadderFilterBase(sampleRate)
+    {
+    }
+    
+    virtual ~StilsonPirkleMoog()
+    {
+    }
+    
+    virtual void Process(float * samples, uint32_t n) noexcept override
+    {
+    }
+    
+    virtual void SetResonance(float r) override
+    {
+    }
+    
+    virtual void SetCutoff(float c) override
+    {
+    }
+    
+private:
+    
+};
+
 #endif
