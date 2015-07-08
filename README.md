@@ -26,3 +26,4 @@ RKSimulation | BSD | Bob~ by Miller Puckette | Yes
 
 https://cycling74.com/forums/topic/pm-ladder-implementation-of-the-moog-ladder-filter/
 http://music.columbia.edu/pipermail/music-dsp/2005-February/062973.html
+https://github.com/Jarkre/DSP/blob/bfe87d2c4297d003f2475dc22d460440e5e1b4fa/WDL/denormal.h
