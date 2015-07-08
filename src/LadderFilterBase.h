@@ -13,7 +13,7 @@ class LadderFilterBase
 public:
     
     LadderFilterBase(float sampleRate) : sampleRate(sampleRate) {}
-    virtual ~LadderFilterBase() = 0;
+    virtual ~LadderFilterBase() {}
     
     virtual void Process(float * samples, uint32_t n) noexcept = 0;
     

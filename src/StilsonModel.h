@@ -92,7 +92,7 @@ public:
                 _output = moog_saturate(_output + local_temp_state);
             }
             
-            SNAP_TO_ZERO (_output);
+            SNAP_TO_ZERO(_output);
             
             samples[samp] = _output;
             
