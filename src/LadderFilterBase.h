@@ -2,23 +2,35 @@
 
 #pragma once
 
-#ifndef LADDERFILTER_H
-#define LADDERFILTER_H
+#ifndef LADDER_FILTER_BASE_H
+#define LADDER_FILTER_BASE_H
 
 #include "Util.h"
 
 class LadderFilterBase
 {
+    
 public:
+    
+    LadderFilterBase(float sampleRate) : sampleRate(sampleRate) {}
     virtual ~LadderFilterBase() = 0;
-    virtual void processSamples (float * samples, int numSamples) noexcept = 0;
-    virtual void computeResonance(float res) = 0;
-    virtual void computeCutoff(float cut) = 0;
+    
+    virtual void Process(float * samples, uint32_t n) noexcept = 0;
+    
+    virtual void SetResonance(float r) = 0;
+    virtual void SetCutoff(float c) = 0;
+    
+    float GetResonance() { return _resonance; }
+    float GetCutoff() { return _cutoff; }
+    
 protected:
+    
     bool _active;
     float _cutoff;
     float _resonance;
     float _drive;
+    
+    float sampleRate;
 };
 
 #endif
