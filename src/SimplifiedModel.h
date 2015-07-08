@@ -33,10 +33,7 @@ public:
         // to 0.5 resulting in a 6 dB passband gain decrease at the maximum resonance
         // (compared to a 12 dB decrease in the original Moog model
         gain_compensation = 0.5;
-        
-        _resonance = 0.10f;
-        _cutoff = 1000.0f;
-        
+
         for (int i = 0; i < 4; i++)
         {
             _stage[i] = 0.0;
