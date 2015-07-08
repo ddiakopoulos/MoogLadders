@@ -2,8 +2,8 @@
 
 #pragma once
 
-#ifndef DSS_LADDER_H
-#define DSS_LADDER_H
+#ifndef STILSON_PIRKLE_LADDER_H
+#define STILSON_PIRKLE_LADDER_H
 
 #include "LadderFilter.h"
 

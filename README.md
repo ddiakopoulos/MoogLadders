@@ -12,12 +12,12 @@ The filter classes do not rely on the use of any external libraries and can be u
 
 Implementation | License | Original Source | Commercial Use? 
 ------------- | ------------- | ----------------- | -----------------
-Huovilainen  | GPLv3 | CSound | No 
-Improved | ISC | Via Author | Yes
-Simplified | Spiritual CC BY-NC-SA | Transliteration of DAFX example | No
 Stilson | Copyright | Moog~ by D. Lowenfels | No
-DSS | - | Designing Software Synthesizers | - 
-Aaron | Copyright | - | No 
+StilsonPirkle | Copyright | Via Author | No 
+Simplified | Spiritual CC BY-NC-SA | Transliteration of DAFX example | No
+Huovilainen  | GPLv3 | CSound | No 
+Aaron | Copyright | Via Author | No 
+Improved | ISC | Via Author | Yes
 RKSimulation | BSD | Bob~ by Miller Puckette | Yes
 
 ## ToDo
