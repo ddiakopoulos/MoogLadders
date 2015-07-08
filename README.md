@@ -15,8 +15,8 @@ Implementation | License | Original Source | Commercial Use?
 Stilson | Copyright | Moog~ by D. Lowenfels | No
 StilsonPirkle | Copyright | Via Author | No 
 Simplified | Copyright | DAFX Example | No
-Huovilainen  | GPLv3 | CSound Src | No 
 Aaron | Copyright | Via Author | No 
+Huovilainen  | GPLv3 | CSound Src | No 
 Improved | ISC | Via Author | Yes
 RKSimulation | BSD | Bob~ by Miller Puckette | Yes
 
