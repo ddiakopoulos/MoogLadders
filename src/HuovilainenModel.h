@@ -36,10 +36,6 @@ public:
     
     HuovilainenMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
-        _resonance = 0.10f;
-        _resonanceQuad = 0.0f;
-        
-        _cutoff = 1000.0f;
         _acr = 0.0f;
         _tune = 0.0f;
         
@@ -122,7 +118,7 @@ public:
         // Normalized Cutoff
         double fc =  (double)(_cutoff / sampleRate);
         
-        double x_2 = fc/2;
+        double x_2 = fc / 2;
         double x2 = fc*fc;
         double x3 = fc*x2;
         
@@ -134,7 +130,7 @@ public:
         
         // Normal scaled impulse invariant transformed one-pole filter; exp() models resonance
         // The coefficient g determines the cutoff frequency
-        _tune = (1.0 - exp(-((2*M_PI)*x_2*fcr))) / _thermal;
+        _tune = (1.0 - exp(-((2 * M_PI) * x_2 * fcr))) / _thermal;
         
         SetResonance(_resonance);
     }
