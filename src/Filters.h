@@ -12,38 +12,41 @@
 
 class BiQuadBase
 {
-    
 public:
     
     BiQuadBase()
     {
-		b = {{0.0f, 0.0f, 0.0f}};
-		a = {{0.0f, 0.0f}};
+		bCoef = {{0.0f, 0.0f, 0.0f}};
+		aCoef = {{0.0f, 0.0f}};
 		w = {{0.0f, 0.0f}};
     }
     
     ~BiQuadBase()
     {
-        
     }
     
-    // DF-II Implementation
+    // DF-II impl
     void Process(float * samples, const uint32_t n)
     {
 		float out = 0;
         for (int s = 0; s < n; ++s)
         {
-            out = b[0] * samples[s] + w[0];
-			w[0] = b[1] * samples[s] - a[0] * out + w[1];
-			w[1] = b[2] * samples[s] - a[1] * out;
+            out = bCoef[0] * samples[s] + w[0];
+			w[0] = bCoef[1] * samples[s] - aCoef[0] * out + w[1];
+			w[1] = bCoef[2] * samples[s] - aCoef[1] * out;
 			samples[s] = out;
         }
     }
+
+	void SetBiquadCoefs(std::array<float, 3> b, std::array<float, 2> a)
+	{
+		bCoef = b;
+		aCoef = a;
+	}
     
 protected:
-    
-    std::array<float, 3> b; // b0, b1, b2
-    std::array<float, 2> a; // a1, a2
+    std::array<float, 3> bCoef; // b0, b1, b2
+    std::array<float, 2> aCoef; // a1, a2
     std::array<float, 2> w; // delays
 };
 
@@ -65,10 +68,13 @@ public:
     
     RBJFilter(FilterType type = FilterType::LOWPASS, float cutoff = 1, float sampleRate = 44100) : sampleRate(sampleRate), t(type)
     {
-        SetCutoff(cutoff);
         Q = 1;
         A = 1;
-        dbGain = 0;
+
+		a = {{0.0f, 0.0f, 0.0f}};
+		b = {{0.0f, 0.0f, 0.0f}};
+
+		SetCutoff(cutoff);
     }
     
     ~RBJFilter()
@@ -92,7 +98,7 @@ public:
                 a[0] = 1 + alpha;
                 a[1] = -2 * cosOmega;
                 a[2] = 1 - alpha;
-            }break;
+            } break;
                 
             case HIGHPASS:
             {
@@ -175,12 +181,17 @@ public:
         // Normalize filter coefficients
         float factor = 1.0f / a[0];
         
-        a[0] *= factor;
-        a[1] *= factor;
-        a[2] *= factor;
-        
-        b[0] *= factor;
-        b[1] *= factor;
+		std::array<float, 2> aNorm;
+		std::array<float, 3> bNorm;
+
+		aNorm[0] = a[1] * factor;
+		aNorm[1] = a[2] * factor;
+
+		bNorm[0] = b[0] * factor;
+		bNorm[1] = b[1] * factor;
+		bNorm[2] = b[2] * factor;
+		
+		SetBiquadCoefs(bNorm, aNorm);
     }
     
     // In Hertz, 0 to Nyquist
@@ -208,7 +219,6 @@ public:
     }
     
 private:
-    
     float sampleRate;
     
     float omega;
@@ -218,10 +228,11 @@ private:
     float Q;
     float alpha;
     float A;
-    float dbGain;
+
+	std::array<float, 3> a;
+    std::array<float, 3> b;
     
     FilterType t;
-    
 };
 
 #endif
