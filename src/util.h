@@ -20,6 +20,7 @@
 #define MOOG_2_SQRTPI  1.12837916709551257389615890312154517
 #define MOOG_SQRT2     1.41421356237309504880168872420969808
 #define MOOG_SQRT1_2   0.707106781186547524400844362104849039
+#define MOOG_INV_PI_2  0.159154943091895
 
 #define NO_COPY(C) C(const C &) = delete; C & operator = (const C &) = delete
 #define NO_MOVE(C) NO_COPY(C); C(C &&) = delete; C & operator = (const C &&) = delete
@@ -59,5 +60,21 @@ inline float moog_saturate(float input)
     float x2 = fabs(input - 0.95f);
     return 0.5f * (x1 - x2);
 }
+
+#define HZ_TO_RAD(f) (MOOG_PI_2 * f)
+#define RAD_TO_HZ(omega) (MOOG_INV_PI_2 * omega)
+
+#ifdef __GNUC__
+    #define ctz(N) __builtin_ctz(N)
+#else
+    template<typename T>
+    inline int ctz(T x)
+    {
+        int p, b;
+        for (p = 0, b = 1; !(b & x); b <<= 1, ++p)
+            ;
+        return p;
+    }
+#endif
 
 #endif

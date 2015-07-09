@@ -1,8 +1,5 @@
 #pragma comment(user, "license")
 
-// Partially adapted from LabSound:
-// Copyright (c) 2003-2015 Nick Porcino, All rights reserved. MIT Licensed.
-
 #pragma once
 
 #ifndef NOISE_GENERATOR_H
@@ -11,26 +8,47 @@
 #include <vector>
 #include <stdint.h>
 #include <exception>
+#include <array>
+#include <random>
 
-class NoiseGenerator
+#include "Util.h"
+#include "Filters.h"
+
+struct PinkNoise
 {
-public:
-    
+    float operator()()
+    {
+        return 0;
+    }
+};
+
+struct WhiteNoise
+{
+    float operator()()
+    {
+        return 0;
+    }
+};
+
+struct BrownNoise
+{
+    float operator()()
+    {
+        return 0;
+    }
+};
+
+struct NoiseGenerator
+{
     enum NoiseType
     {
         WHITE,
-        PINK
+        PINK,
+        BROWN,
     };
     
-    NoiseGenerator()
-    {
-        
-    }
-    
-    ~NoiseGenerator()
-    {
-        
-    }
+    NoiseGenerator(){}
+    ~NoiseGenerator(){}
     
     std::vector<float> produce(NoiseType t, int sampleRate, int channels, float seconds)
     {
@@ -41,28 +59,34 @@ public:
         switch (t)
         {
             case NoiseType::WHITE:
+            {
+                WhiteNoise n;
                 for(int s = 0; s < samplesToGenerate; s++)
                 {
-                    float white = ((float)((whiteSeed & 0x7fffffff) - 0x40000000)) * (float)(1.0f / 0x40000000);
-                    white = (white * 0.5f) - 1.0f;
-                    samples[s] = white;
-                    whiteSeed = whiteSeed * 435898247 + 382842987;
+                    samples[s] = n();
                 }
-                break;
-                
+            } break;
             case NoiseType::PINK:
-                // ToDo
-                break;
-                
+            {
+                PinkNoise n;
+                for(int s = 0; s < samplesToGenerate; s++)
+                {
+                    samples[s] = n();
+                }
+            } break;
+            case NoiseType::BROWN:
+            {
+                BrownNoise n;
+                for(int s = 0; s < samplesToGenerate; s++)
+                {
+                    samples[s] = n();
+                }
+            } break;
             default:
                 throw std::runtime_error("Invalid noise type");
         }
         return samples;
     }
-    
-private:
-    
-    uint32_t whiteSeed = 1489853723;
     
 };
 

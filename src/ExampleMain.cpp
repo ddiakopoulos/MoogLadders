@@ -30,7 +30,7 @@ int main()
     
     NoiseGenerator gen;
     
-    std::vector<float> noiseSamples = gen.produce(NoiseGenerator::NoiseType::WHITE, desiredSampleRate, desiredChannelCount, 5.0);
+    std::vector<float> noiseSamples = gen.produce(NoiseGenerator::NoiseType::PINK, desiredSampleRate, desiredChannelCount, 2.0);
     
     StilsonMoog stilsonModel(desiredSampleRate);
     stilsonModel.Process(noiseSamples.data(), noiseSamples.size());
