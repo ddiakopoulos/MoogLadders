@@ -68,5 +68,8 @@
     <ClInclude Include="..\src\AaronModel.h">
       <Filter>source\models</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Filters.h">
+      <Filter>source\extra</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

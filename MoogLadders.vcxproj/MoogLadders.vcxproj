@@ -26,6 +26,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\AaronModel.h" />
     <ClInclude Include="..\src\AudioDevice.h" />
+    <ClInclude Include="..\src\Filters.h" />
     <ClInclude Include="..\src\HuovilainenModel.h" />
     <ClInclude Include="..\src\ImprovedModel.h" />
     <ClInclude Include="..\src\LadderFilterBase.h" />

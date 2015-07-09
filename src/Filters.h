@@ -6,6 +6,8 @@
 #define FILTERS_H
 
 #include <stdint.h>
+#include <array>
+
 #include "Util.h"
 
 class BiQuadBase
@@ -15,7 +17,9 @@ public:
     
     BiQuadBase()
     {
-        
+		b = {{0.0f, 0.0f, 0.0f}};
+		a = {{0.0f, 0.0f}};
+		w = {{0.0f, 0.0f}};
     }
     
     ~BiQuadBase()
@@ -26,29 +30,21 @@ public:
     // DF-II Implementation
     void Process(float * samples, const uint32_t n)
     {
-        float buffer[n];
-        for (int idx = 0; idx < n; ++idx)
+		float out = 0;
+        for (int s = 0; s < n; ++s)
         {
-            tick(samples[idx]);
+            out = b[0] * samples[s] + w[0];
+			w[0] = b[1] * samples[s] - a[0] * out + w[1];
+			w[1] = b[2] * samples[s] - a[1] * out;
+			samples[s] = out;
         }
-        memcpy(samples, buffer, n);
     }
     
 protected:
     
-    float tick(float s)
-    {
-        float outSample = b[0] * s + w[0];
-        w[0] = b[1] * s - a[0] * outSample + w[1];
-        w[1] = b[2] * s - a[1] * outSample;
-        return outSample;
-    }
-    
-    float b[3] = {0.0f, 0.0f, 0.0f};    // b0, b1, b2
-    float a[2] = {0.0f, 0.0f};          // a1, a2
-    
-    float w[2] = {0.0f, 0.0f};
-
+    std::array<float, 3> b; // b0, b1, b2
+    std::array<float, 2> a; // a1, a2
+    std::array<float, 2> w; // delays
 };
 
 class RBJFilter : public BiQuadBase
