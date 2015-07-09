@@ -14,28 +14,53 @@
 #include "Util.h"
 #include "Filters.h"
 
-struct PinkNoise
+//@todo: pass samplerate down into filters
+
+struct Noise
+{
+	Noise()
+	{
+		dist = std::uniform_real_distribution<float>(-1, 1);
+	}
+    std::mt19937 engine;
+	std::uniform_real_distribution<float> dist;
+};
+
+struct WhiteNoise : public Noise
 {
     float operator()()
     {
-        return 0;
+		return dist(engine);
     }
 };
 
-struct WhiteNoise
+// Pink noise has a decrease of 3dB/Octave
+struct PinkNoise : public Noise
 {
     float operator()()
     {
-        return 0;
+		auto w = dist(engine);
+		auto what = f.process(w);
+        return what;
     }
+
+	PinkingFilter f;
 };
 
-struct BrownNoise
+ // Brown noise has a decrease of 6dB/Octave
+struct BrownNoise : public Noise
 {
+	BrownNoise()
+	{
+		f.SetCutoff(22050);
+		f.SetQValue(0.1f);
+	}
     float operator()()
     {
-        return 0;
+		auto w = dist(engine);
+		return f.Tick(w);
     }
+	RBJFilter f;
 };
 
 struct NoiseGenerator
