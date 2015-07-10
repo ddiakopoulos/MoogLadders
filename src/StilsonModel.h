@@ -8,23 +8,23 @@
 #include "LadderFilterBase.h"
 
 /*
-A digital model of the classic Moog filter was presented first by Stilson and
-Smith. This model uses a cascade of one-pole IIR filters in series with a global
-feedback to produce resonance. A digital realization of this filter introduces a
-unit delay, effectively making it a fifth-order filter. Unfortunately, this
-delay also has the effect of coupling the cutoff and resonance parameters,
-uncharacteristic of the uncoupled control of the original Moog ladder. As a
-compromise, a zero can be inserted at z = -0.3 inside each one pole section to
-minimize the coupling the parameters (humans are not particularly sensitive to
-variations in Q factor). Although fast coefficient updates can be achieved since
-the nonlinearities of the Moog are not considered, the filter becomes unstable
-with very large resonance values and does not enter self-oscillation. 
+ A digital model of the classic Moog filter was presented first by Stilson and
+ Smith. This model uses a cascade of one-pole IIR filters in series with a global
+ feedback to produce resonance. A digital realization of this filter introduces a
+ unit delay, effectively making it a fifth-order filter. Unfortunately, this
+ delay also has the effect of coupling the cutoff and resonance parameters,
+ uncharacteristic of the uncoupled control of the original Moog ladder. As a
+ compromise, a zero can be inserted at z = -0.3 inside each one pole section to
+ minimize the coupling the parameters (humans are not particularly sensitive to
+ variations in Q factor). Although fast coefficient updates can be achieved since
+ the nonlinearities of the Moog are not considered, the filter becomes unstable
+ with very large resonance values and does not enter self-oscillation.
+ 
+ References: Stilson and Smith (1996), DAFX - Zolzer (ed) (2nd ed)
+ Original implementation: Tim Stilson
+ */
 
-References: Stilson and Smith (1996), DAFX - Zolzer (ed) (2nd ed)
-Original implementation: Tim Stilson
-*/
-
-static float gaintable[199] =
+static float S_STILSON_GAINTABLE[199] =
 {
     0.999969, 0.990082, 0.980347, 0.970764, 0.961304, 0.951996, 0.94281, 0.933777, 0.924866, 0.916077,
     0.90741, 0.898865, 0.890442, 0.882141 , 0.873962, 0.865906, 0.857941, 0.850067, 0.842346, 0.834686,
@@ -50,17 +50,11 @@ static float gaintable[199] =
 
 class StilsonMoog : public LadderFilterBase
 {
-    
 public:
     
     StilsonMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
-        _p = 0.0f;
-        _Q = 0.0f;
-        
-        for (int i = 0; i < 4; i++)
-            _state[i] = 0.0;
-        
+        memset(state, 0, sizeof(state));
         SetCutoff(1000.0f);
         SetResonance(0.10f);
     }
@@ -72,47 +66,44 @@ public:
     
     virtual void Process(float * samples, uint32_t n) noexcept override
     {
-        float local_temp_state;
+        float localState;
         
-        for (int samp = 0; samp < n; ++samp)
+        for (int s = 0; s < n; ++s)
         {
             // Scale by arbitrary value on account of our saturation function
-            const float input = samples[samp] * 0.65f;
+            const float input = samples[s] * 0.65f;
             
             // Negative Feedback
-            _output = 0.25 * ( input - _output );
+            output = 0.25 * (input - output);
             
             for (int pole = 0; pole < 4; ++pole)
             {
-                local_temp_state = _state[pole];
-                _output = moog_saturate(_output + _p * (_output - local_temp_state));
-                _state[pole] = _output;
-                _output = moog_saturate(_output + local_temp_state);
+                localState = state[pole];
+                output = moog_saturate(output + p * (output - localState));
+                state[pole] = output;
+                output = moog_saturate(output + localState);
             }
             
-            SNAP_TO_ZERO(_output);
-            
-            samples[samp] = _output;
-            
-            // Scale stateful output by Q
-            _output *= _Q;
+            SNAP_TO_ZERO(output);
+            samples[s] = output;
+            output *= Q; // Scale stateful output by Q
         }
     }
     
     virtual void SetResonance(float r) override
     {
         r = moog_min(r, 1);
-        
         resonance = r;
         
-        float ix, ixfrac;
+        double ix;
+        double ixfrac;
         int ixint;
         
-        ix = _p * 99;
+        ix = p * 99;
         ixint = floor(ix);
         ixfrac = ix - ixint;
         
-        _Q = r * moog_lerp(ixfrac, gaintable[ ixint + 99 ], gaintable[ ixint + 100 ]);
+        Q = r * moog_lerp(ixfrac, S_STILSON_GAINTABLE[ixint + 99], S_STILSON_GAINTABLE[ixint + 100]);
     }
     
     virtual void SetCutoff(float c) override
@@ -120,23 +111,22 @@ public:
         cutoff = c;
         
         // Normalized cutoff between [0, 1]
-        float fc = (2 * cutoff) / sampleRate;
-        
-        float x2 = fc*fc;
-        float x3 = fc*x2;
+        double fc = (2 * cutoff) / sampleRate;
+        double x2 = fc*fc;
+        double x3 = fc*x2;
         
         // Frequency & amplitude correction (Cubic Fit)
-        _p = -0.69346 * x3 - 0.59515 * x2 + 3.2937 * fc - 1.0072;
+        p = -0.69346 * x3 - 0.59515 * x2 + 3.2937 * fc - 1.0072;
         
         SetResonance(resonance);
     }
-
+    
 private:
     
-    float _p, _Q; 
-    float _state[4];
-    float _output; 
-    
+    double p;
+    double Q; 
+    double state[4];
+    double output; 
 }; 
 
 #endif
