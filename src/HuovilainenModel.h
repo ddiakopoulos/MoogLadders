@@ -31,24 +31,16 @@ http://www.synthmaker.co.uk/dokuwiki/doku.php?id=tutorials:oversampling
 
 class HuovilainenMoog : public LadderFilterBase
 {
-    
 public:
     
     HuovilainenMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
-        _acr = 0.0f;
-        _tune = 0.0f;
+        acr = 0.0;
+        tune = 0.0;
         
-        for (int i = 0; i < 4; i++)
-        {
-            _stage[i] = 0.0;
-            _stageZ1[i] = 0.0;
-        }
-        
-        for (int i = 0; i < 3; i++)
-        {
-           _stageTANH[i] = 0.0;
-        }
+        memset(stage, 0, sizeof(stage));
+        memset(stageZ1, 0, sizeof(stageZ1));
+        memset(stageTanh, 0, sizeof(stageTanh));
         
         SetTransistorVoltage();
     }
@@ -60,8 +52,7 @@ public:
     
     virtual void Process(float * samples, uint32_t n) noexcept override
     {
-        // 2v = thermal
-        double local_output = 0;
+        double localOutput = 0;
         
         for (int samp = 0; samp < n; ++samp)
         {
@@ -69,76 +60,67 @@ public:
             for (int j = 0; j < 2; ++j)
             {
                 // Filter stages (Huovilainen Fig 22)
-                for (int stage = 0; stage < 4; ++stage)
+                for (int stageIdx = 0; stageIdx < 4; ++stageIdx)
                 {
-                    // Stages 1, 2, 3
                     if (stage)
                     {
-                        _input = _stage[stage-1];
-                        _stageTANH[stage-1] = tanh(_input*_thermal);
-                        _stage[stage] = _stageZ1[stage] + _tune * (_stageTANH[stage-1]) - (stage != 3 ? _stageTANH[stage] : tanh(_stageZ1[stage]*_thermal));
+                        input = stage[stageIdx-1];
+                        stageTanh[stageIdx-1] = tanh(input * thermal);
+                        stage[stageIdx] = stageZ1[stageIdx] + tune * (stageTanh[stageIdx-1]) - (stageIdx != 3 ? stageTanh[stageIdx] : tanh(stageZ1[stageIdx] * thermal));
                     }
-                    // New input, stage 0
                     else
                     {
-                        _input = samples[samp] - _resonanceQuad * _output;
-                        _stage[stage] = _stageZ1[stage] + _tune * (tanh(_input*_thermal) - _stageTANH[stage]);
+                        input = samples[samp] - resonanceQuad * output;
+                        stage[stageIdx] = stageZ1[stageIdx] + tune * (tanh(input * thermal) - stageTanh[stageIdx]);
                     }
                     
-                    _stageZ1[stage] = _stage[stage];
+                    stageZ1[stageIdx] = stage[stageIdx];
                 }
                 
-                // .5 sample delay for phase compensation
-                // This can be realized by averaging two samples.
-                local_output = (_stage[3] + _last_stage) * 0.5;
-                _last_stage = _stage[3];
-                
+                // 0.5 sample delay for phase compensation (average two samples)
+                localOutput = (stage[3] + lastStage) * 0.5;
+                lastStage = stage[3];
             }
             
-            _output = local_output;
-            SNAP_TO_ZERO(_output);
-            samples[samp] = _output;
+            output = localOutput;
+            SNAP_TO_ZERO(output);
+            samples[samp] = output;
         }
     }
     
     virtual void SetResonance(float r) override
     {
-        if (r < 0)
-            resonance = 0;
-        else
-            resonance = r;
-        
-        _resonanceQuad = (4.0 * (double) resonance * _acr); // (Modified Huovilainen Fig 23)
+        resonance = (r < 0) ? 0 : r;
+        resonanceQuad = (4.0 * (double) resonance * acr); // (Modified Huovilainen Fig 23)
     }
     
     virtual void SetCutoff(float c) override
     {
         cutoff = c;
         
-        // Normalized Cutoff
         double fc =  (double)(cutoff / sampleRate);
         
         double x_2 = fc / 2;
-        double x2 = fc*fc;
-        double x3 = fc*x2;
+        double x2 = fc * fc;
+        double x3 = fc * x2;
         
-        // Frequency & amplitude correction
+        // Frequency & amplitude compoensation
         double fcr = 1.8730 * x3 + 0.4955 * x2 - 0.6490 * fc + 0.9988;
         
         // Resonance compensation
-        _acr = -3.9364 * x2 + 1.8409 * fc + 0.9968;
+        acr = -3.9364 * x2 + 1.8409 * fc + 0.9968;
         
         // Normal scaled impulse invariant transformed one-pole filter; exp() models resonance
         // The coefficient g determines the cutoff frequency
-        _tune = (1.0 - exp(-((2 * MOOG_PI) * x_2 * fcr))) / _thermal;
+        tune = (1.0 - exp(-((2 * MOOG_PI) * x_2 * fcr))) / thermal;
         
         SetResonance(resonance);
     }
 
-    void SetTransistorVoltage(const float V = 1.22070313)
+    void SetTransistorVoltage(const double V = 1.22070313)
     {
         // Base-emitter voltages of the transistors
-        _thermal = (1.0f / V);
+        thermal = (1.0 / V);
         
         SetCutoff(1000.0f);
         SetResonance(0.10f);
@@ -146,17 +128,19 @@ public:
     
 private:
     
-    double   _output; 
-    double   _last_stage;
+    double output;
+    double lastStage;
     
-    double   _stage[4];
-    double   _stageZ1[4];
-    double   _stageTANH[3];
+    double stage[4];
+    double stageZ1[4];
+    double stageTanh[3];
     
-    double  _resonanceQuad; 
+    double resonanceQuad;
     
-    double  _thermal, _input, _tune, _acr;
-    
+    double thermal;
+    double input;
+    double tune;
+    double acr;
 }; 
 
 #endif
