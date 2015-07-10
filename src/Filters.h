@@ -232,6 +232,11 @@ public:
 		UpdateCoefficients();
 	}
     
+    FilterType GetType()
+    {
+        return t;
+    }
+    
 private:
 
     float sampleRate;
@@ -250,13 +255,12 @@ private:
     FilterType t;
 };
 
+// +/-0.05dB above 9.2Hz @ 44,100Hz
 class PinkingFilter
 {
 public:
-	// +/-0.05dB above 9.2Hz @ 44,100Hz
     PinkingFilter() : b0(0), b1(0), b2(0), b3(0), b4(0), b5(0), b6(0) {}
-	~PinkingFilter() {}
-
+    
 	float process(const float s)
 	{
 		b0 = 0.99886 * b0 + s * 0.0555179;
@@ -269,7 +273,6 @@ public:
 		b6 = s * 0.115926;
 		return pink;
 	}
-
 private:
     double b0, b1, b2, b3, b4, b5, b6;
 };
@@ -278,7 +281,6 @@ class BrowningFilter
 {
 public:
     BrowningFilter() : l(0) {}
-    ~BrowningFilter() {}
     
     float process(const float s)
     {
@@ -286,10 +288,8 @@ public:
         l = brown;
         return brown * 3.5f; // compensate for gain
     }
-    
 private:
     float l;
 };
-
 
 #endif
