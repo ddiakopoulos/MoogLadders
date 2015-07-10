@@ -30,13 +30,21 @@ int main()
     
     NoiseGenerator gen;
     
-    std::vector<float> noiseSamples = gen.produce(NoiseGenerator::NoiseType::WHITE, desiredSampleRate, desiredChannelCount, 1.0);
+    std::vector<float> noiseSamples = gen.produce(NoiseGenerator::NoiseType::WHITE, desiredSampleRate, desiredChannelCount, 3.0);
     
     //StilsonMoog stilsonModel(desiredSampleRate);
     //stilsonModel.Process(noiseSamples.data(), noiseSamples.size());
     
-    SimplifiedMoog simplifiedModel(desiredSampleRate);
-    simplifiedModel.Process(noiseSamples.data(), noiseSamples.size());
+    //SimplifiedMoog simplifiedModel(desiredSampleRate);
+    //simplifiedModel.Process(noiseSamples.data(), noiseSamples.size());
+    
+    //@tofix: really quiet...
+    //HuovilainenMoog huovilainenModel(desiredSampleRate);
+    //huovilainenModel.Process(noiseSamples.data(), noiseSamples.size());
+    
+    //@tofix: somewhat quiet...
+    ImprovedMoog improvedModel(desiredSampleRate);
+    improvedModel.Process(noiseSamples.data(), noiseSamples.size());
     
     device.Play(noiseSamples);
     

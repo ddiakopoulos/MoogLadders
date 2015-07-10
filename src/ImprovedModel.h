@@ -31,10 +31,10 @@ public:
         memset(dV, 0, sizeof(dV));
         memset(tV, 0, sizeof(tV));
         
-        drive = 0.05;
+        drive = 1;
         
         SetCutoff(1000.0f);
-        SetResonance(0.05f);
+        SetResonance(0.5f);
     }
     
     virtual ~ImprovedMoog()
@@ -45,13 +45,10 @@ public:
     virtual void Process(float * samples, uint32_t n) noexcept override
     {
         double dV0, dV1, dV2, dV3;
-        float inSample;
-        
+
         for (int i = 0; i < n; i++)
         {
-            inSample = samples[i];
-            
-            dV0 = -g * (tanh((drive * inSample + resonance * V[3]) / (2.0 * VT)) + tV[0]);
+            dV0 = -g * (tanh((drive * samples[i] + resonance * V[3]) / (2.0 * VT)) + tV[0]);
             V[0] += (dV0 + dV[0]) / (2.0 * sampleRate);
             dV[0] = dV0;
             tV[0] = tanh(V[0] / (2.0 * VT));

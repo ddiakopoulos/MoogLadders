@@ -33,7 +33,7 @@ class HuovilainenMoog : public LadderFilterBase
 {
 public:
     
-    HuovilainenMoog(float sampleRate) : LadderFilterBase(sampleRate)
+    HuovilainenMoog(float sampleRate) : LadderFilterBase(sampleRate), input(0), output(0)
     {
         memset(stage, 0, sizeof(stage));
         memset(stageZ1, 0, sizeof(stageZ1));
@@ -48,7 +48,7 @@ public:
     
     virtual void Process(float * samples, uint32_t n) noexcept override
     {
-        double localOutput = 0;
+        double localOutput;
         
         for (int s = 0; s < n; ++s)
         {
