@@ -254,8 +254,7 @@ class PinkingFilter
 {
 public:
 	// +/-0.05dB above 9.2Hz @ 44,100Hz
-	PinkingFilter() : b0(0), b1(0), b2(0), b3(0), b4(0), b5(0), b6(0) { }
-
+    PinkingFilter() : b0(0), b1(0), b2(0), b3(0), b4(0), b5(0), b6(0) {}
 	~PinkingFilter() {}
 
 	float process(const float s)
@@ -271,8 +270,26 @@ public:
 		return pink;
 	}
 
-	private:
-		double b0, b1, b2, b3, b4, b5, b6;
+private:
+    double b0, b1, b2, b3, b4, b5, b6;
 };
+
+class BrowningFilter
+{
+public:
+    BrowningFilter() : l(0) {}
+    ~BrowningFilter() {}
+    
+    float process(const float s)
+    {
+        float brown = (l + (0.02f * s)) / 1.02f;
+        l = brown;
+        return brown * 3.5f; // compensate for gain
+    }
+    
+private:
+    float l;
+};
+
 
 #endif

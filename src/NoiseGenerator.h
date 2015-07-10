@@ -14,55 +14,34 @@
 #include "Util.h"
 #include "Filters.h"
 
-//@todo: pass samplerate down into filters
-
-struct Noise
+struct WhiteNoiseSource
 {
-	Noise()
-	{
-		dist = std::uniform_real_distribution<float>(-1, 1);
-	}
+    WhiteNoiseSource() : dist(-1, 1) {}
     std::mt19937 engine;
 	std::uniform_real_distribution<float> dist;
 };
 
-struct WhiteNoise : public Noise
+// Full spectrum noise
+struct WhiteNoise : public WhiteNoiseSource
 {
-    float operator()()
-    {
-		return dist(engine);
-    }
+    float operator()() { return dist(engine); }
 };
 
 // Pink noise has a decrease of 3dB/Octave
-struct PinkNoise : public Noise
+struct PinkNoise : public WhiteNoiseSource
 {
-    float operator()()
-    {
-		auto w = dist(engine);
-		auto what = f.process(w);
-        return what;
-    }
-
+    float operator()() { return f.process(dist(engine)); }
 	PinkingFilter f;
 };
 
  // Brown noise has a decrease of 6dB/Octave
-struct BrownNoise : public Noise
+struct BrownNoise : public WhiteNoiseSource
 {
-	BrownNoise()
-	{
-		f.SetCutoff(22050);
-		f.SetQValue(0.1f);
-	}
-    float operator()()
-    {
-		auto w = dist(engine);
-		return f.Tick(w);
-    }
-	RBJFilter f;
+    float operator()() { return f.process(dist(engine)); }
+    BrowningFilter f;
 };
 
+// Note! This noise is only vaid for 44100 because of the hard-coded filter coefficients
 struct NoiseGenerator
 {
     enum NoiseType
@@ -71,9 +50,6 @@ struct NoiseGenerator
         PINK,
         BROWN,
     };
-    
-    NoiseGenerator(){}
-    ~NoiseGenerator(){}
     
     std::vector<float> produce(NoiseType t, int sampleRate, int channels, float seconds)
     {
