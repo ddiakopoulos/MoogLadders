@@ -48,7 +48,7 @@ public:
     
     virtual void Process(float * samples, uint32_t n) noexcept override
     {
-        double localOutput;
+        double localOutput = 0;
         
         for (int s = 0; s < n; ++s)
         {
@@ -61,13 +61,13 @@ public:
                     if (stageIdx)
                     {
                         input = stage[stageIdx-1];
-                        stageTanh[stageIdx-1] = tanh(input * thermal);
-                        stage[stageIdx] = stageZ1[stageIdx] + tune * (stageTanh[stageIdx-1]) - (stageIdx != 3 ? stageTanh[stageIdx] : tanh(stageZ1[stageIdx] * thermal));
+                        stageTanh[stageIdx-1] = tanh(input / thermal);
+                        stage[stageIdx] = stageZ1[stageIdx] + tune * (stageTanh[stageIdx-1]) - (stageIdx != 3 ? stageTanh[stageIdx] : tanh(stageZ1[stageIdx] / thermal));
                     }
                     else
                     {
                         input = samples[s] - resonanceQuad * output;
-                        stage[stageIdx] = stageZ1[stageIdx] + tune * (tanh(input * thermal) - stageTanh[stageIdx]);
+                        stage[stageIdx] = stageZ1[stageIdx] + tune * (tanh(input / thermal) - stageTanh[stageIdx]);
                     }
                     
                     stageZ1[stageIdx] = stage[stageIdx];
@@ -94,29 +94,30 @@ public:
     {
         cutoff = c;
         
-        double fc =  (double)(cutoff / sampleRate);
-        
-        double x_2 = fc / 2;
+        // fc / 2 if oversampled
+        double fc = (cutoff / sampleRate);
         double x2 = fc * fc;
-        double x3 = fc * x2;
+        double x3 = fc * fc * fc;
         
         // Frequency & amplitude compensation
-        double fcr = 1.8730 * x3 + 0.4955 * x2 - 0.6490 * fc + 0.9988;
+        double fcr = (1.8730 * x3) + (0.4955 * x2) - (0.6490 * fc) + 0.9988;
         
         // Resonance compensation
-        acr = -3.9364 * x2 + 1.8409 * fc + 0.9968;
+        acr = (-3.9364 * x2 + 1.8409 * fc + 0.9968);
         
         // Normal scaled impulse invariant transformed one-pole filter; exp() models resonance
         // The coefficient g determines the cutoff frequency
-        tune = (1.0 - exp(-(MOOG_2_PI * x_2 * fcr))) / thermal;
+        tune = (1.0 - exp(-(2 * MOOG_PI * fc * fcr))) * thermal;
         
         SetResonance(resonance);
+        
+        postGain = (1 + resonance / 4 * (1.1f + cutoff / sampleRate * 3.5f)) * (2 - (1.0f - resonance / 4) * (1.0f - resonance / 4));
     }
 
     // Transistor base-emitter voltage simulation
     void SetTransistorVoltage(const double V = 1.22070313)
     {
-        thermal = (1.0 / V);
+        thermal = (2 + V);
         SetCutoff(1000.0f);
         SetResonance(0.10f);
     }
@@ -136,6 +137,8 @@ private:
     double input;
     double tune;
     double acr;
+    
+    double postGain;
 }; 
 
 #endif

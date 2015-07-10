@@ -38,11 +38,10 @@ int main()
     SimplifiedMoog simplifiedModel(desiredSampleRate);
     //simplifiedModel.Process(noiseSamples.data(), noiseSamples.size());
     
-    //@tofix: really quiet...
+    //@tofix: isn't doing much filtering at the moment.
     HuovilainenMoog huovilainenModel(desiredSampleRate);
     //huovilainenModel.Process(noiseSamples.data(), noiseSamples.size());
     
-    //@tofix: somewhat quiet...
     ImprovedMoog improvedModel(desiredSampleRate);
     improvedModel.Process(noiseSamples.data(), noiseSamples.size());
     

@@ -111,9 +111,9 @@ public:
         cutoff = c;
         
         // Normalized cutoff between [0, 1]
-        double fc = (2 * cutoff) / sampleRate;
-        double x2 = fc*fc;
-        double x3 = fc*x2;
+        double fc = (cutoff) / sampleRate;
+        double x2 = fc * fc;
+        double x3 = fc * fc * fc;
         
         // Frequency & amplitude correction (Cubic Fit)
         p = -0.69346 * x3 - 0.59515 * x2 + 3.2937 * fc - 1.0072;

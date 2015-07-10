@@ -31,10 +31,10 @@ public:
         memset(dV, 0, sizeof(dV));
         memset(tV, 0, sizeof(tV));
         
-        drive = 1;
+        drive = 0.0517;
         
-        SetCutoff(1000.0f);
-        SetResonance(0.5f);
+        SetCutoff(1000.0f); // normalized cutoff frequency
+        SetResonance(0.1f); // [0, 4]
     }
     
     virtual ~ImprovedMoog()
@@ -80,7 +80,7 @@ public:
     virtual void SetCutoff(float c) override
     {
         cutoff = c;
-        x = MOOG_PI * cutoff / sampleRate;
+        x = (MOOG_PI * cutoff) / sampleRate;
         g = 4.0 * MOOG_PI * VT * cutoff * (1.0 - x) / (1.0 + x);
     }
     

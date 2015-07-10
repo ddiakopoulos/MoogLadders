@@ -90,11 +90,10 @@ public:
     {
         cutoff = c;
         
-        float fs = sampleRate;
-        float x2 = 2 * fs;
+        float fs2 = 2 * sampleRate;
         
         // Normalized cutoff [0, 1] in radians: ((2*pi) * cutoff / samplerate)
-        g = (2 * MOOG_PI) * cutoff / x2; // feedback coefficient at fs*2 because of doublesampling
+        g = (2 * MOOG_PI) * cutoff / fs2; // feedback coefficient at fs*2 because of doublesampling
         g *= MOOG_PI / 1.3; // correction factor that allows _cutoff to be supplied Hertz
         
         // FIR part with gain g
