@@ -14,9 +14,9 @@
 #include <iostream>
 #include <memory>
 
-const unsigned int FRAME_SIZE = 512;
-const int CHANNELS = 2;
-const int BUFFER_LENGTH = FRAME_SIZE * CHANNELS;
+static const unsigned int FRAME_SIZE = 512;
+static const int CHANNELS = 2;
+static const int BUFFER_LENGTH = FRAME_SIZE * CHANNELS;
 
 struct DeviceInfo
 {
@@ -29,37 +29,23 @@ struct DeviceInfo
 
 class AudioDevice
 {
+    
     NO_MOVE(AudioDevice);
     std::unique_ptr<RtAudio> rtaudio;
+    
 public:
-    
-    DeviceInfo info;
-    
+
     static void ListAudioDevices();
     
-    AudioDevice(int numChannels, int sampleRate, int deviceId = -1)
-    {
-        rtaudio = std::unique_ptr<RtAudio>(new RtAudio);
-        info.id = deviceId != -1 ? deviceId : rtaudio->getDefaultOutputDevice();
-        info.numChannels = numChannels;
-        info.sampleRate = sampleRate;
-        info.frameSize = FRAME_SIZE;
-    }
+    AudioDevice(int numChannels, int sampleRate, int deviceId = -1);
     
-    ~AudioDevice()
-    {
-        if (rtaudio) 
-        {
-            rtaudio->stopStream();
-            if (rtaudio->isStreamOpen())
-                rtaudio->closeStream();
-        }
-    }
+    ~AudioDevice();
     
     bool Open(const int deviceId);
     
     bool Play(const std::vector<float> & data);
     
+    DeviceInfo info;
 };
 
 #endif

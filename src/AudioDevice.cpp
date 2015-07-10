@@ -25,6 +25,25 @@ static int rt_callback(void * output_buffer, void * input_buffer, unsigned int n
 	return 0;
 }
 
+AudioDevice::AudioDevice(int numChannels, int sampleRate, int deviceId)
+{
+    rtaudio = std::unique_ptr<RtAudio>(new RtAudio);
+    info.id = deviceId != -1 ? deviceId : rtaudio->getDefaultOutputDevice();
+    info.numChannels = numChannels;
+    info.sampleRate = sampleRate;
+    info.frameSize = FRAME_SIZE;
+}
+
+AudioDevice::~AudioDevice()
+{
+    if (rtaudio)
+    {
+        rtaudio->stopStream();
+        if (rtaudio->isStreamOpen())
+            rtaudio->closeStream();
+    }
+}
+
 bool AudioDevice::Open(const int deviceId)
 {
 	if (!rtaudio) throw std::runtime_error("rtaudio not created yet");
