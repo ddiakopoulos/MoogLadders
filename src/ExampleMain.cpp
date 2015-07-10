@@ -14,6 +14,8 @@
 #include "HuovilainenModel.h"
 #include "AaronModel.h"
 #include "RKSimulationModel.h"
+#include "MicrotrackerModel.h"
+#include "MusicDSPModel.h"
 
 #include <thread>
 #include <chrono>
@@ -39,11 +41,18 @@ int main()
     //simplifiedModel.Process(noiseSamples.data(), noiseSamples.size());
     
     HuovilainenMoog huovilainenModel(desiredSampleRate);
-    huovilainenModel.Process(noiseSamples.data(), noiseSamples.size());
+    //huovilainenModel.Process(noiseSamples.data(), noiseSamples.size());
     
+	//@todo still very quiet... 
     ImprovedMoog improvedModel(desiredSampleRate);
     //improvedModel.Process(noiseSamples.data(), noiseSamples.size());
     
+	MicrotrackerMoog microtrackerModel(desiredSampleRate);
+	//microtrackerModel.Process(noiseSamples.data(), noiseSamples.size());
+
+	MusicDSPMoog musicdspModel(desiredSampleRate);
+	//musicdspModel.Process(noiseSamples.data(), noiseSamples.size());
+
     device.Play(noiseSamples);
     
     return 0;

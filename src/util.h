@@ -6,6 +6,7 @@
 #define MOOG_UTIL_H
 
 #include <cmath>
+#include <stdint.h>
 
 #define MOOG_E         2.71828182845904523536028747135266250
 #define MOOG_LOG2E     1.44269504088896340735992468100189214

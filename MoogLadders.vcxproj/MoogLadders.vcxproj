@@ -30,6 +30,8 @@
     <ClInclude Include="..\src\HuovilainenModel.h" />
     <ClInclude Include="..\src\ImprovedModel.h" />
     <ClInclude Include="..\src\LadderFilterBase.h" />
+    <ClInclude Include="..\src\MicrotrackerModel.h" />
+    <ClInclude Include="..\src\MusicDSPModel.h" />
     <ClInclude Include="..\src\NoiseGenerator.h" />
     <ClInclude Include="..\src\RingBuffer.h" />
     <ClInclude Include="..\src\RKSimulationModel.h" />

@@ -71,5 +71,11 @@
     <ClInclude Include="..\src\Filters.h">
       <Filter>source\extra</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\MicrotrackerModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MusicDSPModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
