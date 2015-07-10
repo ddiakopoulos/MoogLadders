@@ -58,7 +58,7 @@ public:
                 // Filter stages (Huovilainen Fig 22)
                 for (int stageIdx = 0; stageIdx < 4; ++stageIdx)
                 {
-                    if (stage)
+                    if (stageIdx)
                     {
                         input = stage[stageIdx-1];
                         stageTanh[stageIdx-1] = tanh(input * thermal);

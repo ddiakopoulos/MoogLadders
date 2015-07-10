@@ -60,7 +60,7 @@ public:
         {
             for (int stageIdx = 0; stageIdx < 4; ++stageIdx)
             {
-                if (stage)
+                if (stageIdx)
                 {
                     input = stage[stageIdx-1];
                     stageTanh[stageIdx-1] = tanh(input);
@@ -95,6 +95,7 @@ public:
         
         // Normalized cutoff [0, 1] in radians: ((2*pi) * cutoff / samplerate)
         g = (2 * MOOG_PI) * cutoff / x2; // feedback coefficient at fs*2 because of doublesampling
+        g *= MOOG_PI / 1.3; // correction factor that allows _cutoff to be supplied Hertz
         
         // FIR part with gain g
         h = g / 1.3;
