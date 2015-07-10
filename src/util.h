@@ -77,4 +77,10 @@ inline float moog_saturate(float input)
     }
 #endif
 
+inline double fast_tanh(double x) 
+{
+  double x2 = x * x;
+  return x * (27 + x2) / (27 + 9 * x2);
+}
+
 #endif

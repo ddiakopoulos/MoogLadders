@@ -38,12 +38,11 @@ int main()
     SimplifiedMoog simplifiedModel(desiredSampleRate);
     //simplifiedModel.Process(noiseSamples.data(), noiseSamples.size());
     
-    //@tofix: isn't doing much filtering at the moment.
     HuovilainenMoog huovilainenModel(desiredSampleRate);
-    //huovilainenModel.Process(noiseSamples.data(), noiseSamples.size());
+    huovilainenModel.Process(noiseSamples.data(), noiseSamples.size());
     
     ImprovedMoog improvedModel(desiredSampleRate);
-    improvedModel.Process(noiseSamples.data(), noiseSamples.size());
+    //improvedModel.Process(noiseSamples.data(), noiseSamples.size());
     
     device.Play(noiseSamples);
     
