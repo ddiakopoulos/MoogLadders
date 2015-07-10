@@ -113,11 +113,10 @@ public:
         SetResonance(resonance);
     }
 
+    // Transistor base-emitter voltage simulation
     void SetTransistorVoltage(const double V = 1.22070313)
     {
-        // Base-emitter voltages of the transistors
         thermal = (1.0 / V);
-        
         SetCutoff(1000.0f);
         SetResonance(0.10f);
     }
