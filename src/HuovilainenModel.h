@@ -108,7 +108,7 @@ public:
         
         // Normal scaled impulse invariant transformed one-pole filter; exp() models resonance
         // The coefficient g determines the cutoff frequency
-        tune = (1.0 - exp(-((2 * MOOG_PI) * x_2 * fcr))) / thermal;
+        tune = (1.0 - exp(-(MOOG_2_PI * x_2 * fcr))) / thermal;
         
         SetResonance(resonance);
     }
