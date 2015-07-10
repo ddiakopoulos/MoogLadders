@@ -104,19 +104,19 @@ public:
     virtual void SetResonance(float r) override
     {
         if (r < 0)
-            _resonance = 0;
+            resonance = 0;
         else
-            _resonance = r;
+            resonance = r;
         
-        _resonanceQuad = (4.0 * (double) _resonance * _acr); // (Modified Huovilainen Fig 23)
+        _resonanceQuad = (4.0 * (double) resonance * _acr); // (Modified Huovilainen Fig 23)
     }
     
     virtual void SetCutoff(float c) override
     {
-        _cutoff = c;
+        cutoff = c;
         
         // Normalized Cutoff
-        double fc =  (double)(_cutoff / sampleRate);
+        double fc =  (double)(cutoff / sampleRate);
         
         double x_2 = fc / 2;
         double x2 = fc*fc;
@@ -132,7 +132,7 @@ public:
         // The coefficient g determines the cutoff frequency
         _tune = (1.0 - exp(-((2 * MOOG_PI) * x_2 * fcr))) / _thermal;
         
-        SetResonance(_resonance);
+        SetResonance(resonance);
     }
 
     void SetTransistorVoltage(const float V = 1.22070313)

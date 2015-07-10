@@ -9,27 +9,22 @@
 
 class LadderFilterBase
 {
-    
 public:
     
     LadderFilterBase(float sampleRate) : sampleRate(sampleRate) {}
     virtual ~LadderFilterBase() {}
     
     virtual void Process(float * samples, uint32_t n) noexcept = 0;
-    
     virtual void SetResonance(float r) = 0;
     virtual void SetCutoff(float c) = 0;
     
-    float GetResonance() { return _resonance; }
-    float GetCutoff() { return _cutoff; }
+    float GetResonance() { return resonance; }
+    float GetCutoff() { return cutoff; }
     
 protected:
     
-    bool _active;
-    float _cutoff;
-    float _resonance;
-    float _drive;
-    
+    float cutoff;
+    float resonance;
     float sampleRate;
 };
 

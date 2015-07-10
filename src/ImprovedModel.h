@@ -69,7 +69,7 @@ public:
         {
             inSample = samples[i];
             
-            dV1 = -_g * (tanh((_drive * inSample + _resonance * ladder->V4prev) / (2.0 * VT)) + ladder->tV1prev);
+            dV1 = -_g * (tanh((_drive * inSample + resonance * ladder->V4prev) / (2.0 * VT)) + ladder->tV1prev);
             ladder->V1prev += (dV1 + ladder->dV1prev) / (2.0 * sampleRate);
             ladder->dV1prev = dV1;
             ladder->tV1prev = tanh(ladder->V1prev / (2.0 * VT));
@@ -95,14 +95,14 @@ public:
 
     virtual void SetResonance(float r) override
     {
-        _resonance = r;
+       resonance = r;
     }
     
     virtual void SetCutoff(float c) override
     {
-        _cutoff = c;
-        _x = MOOG_PI * _cutoff / sampleRate;
-        _g = 4.0 * MOOG_PI * VT * _cutoff * (1.0 - _x) / (1.0 + _x);
+        cutoff = c;
+        _x = MOOG_PI * cutoff / sampleRate;
+        _g = 4.0 * MOOG_PI * VT * cutoff * (1.0 - _x) / (1.0 + _x);
     }
     
 private:
@@ -110,7 +110,8 @@ private:
     LadderData * ladder;
 
     double _x;
-    double _g; 
+    double _g;
+    double _drive;
     
 };
 

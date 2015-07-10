@@ -41,7 +41,7 @@ struct BrownNoise : public WhiteNoiseSource
     BrowningFilter f;
 };
 
-// Note! This noise is only vaid for 44100 because of the hard-coded filter coefficients
+// Note! This noise is only valid for 44100 because of the hard-coded filter coefficients
 struct NoiseGenerator
 {
     enum NoiseType

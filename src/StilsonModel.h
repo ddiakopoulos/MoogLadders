@@ -103,7 +103,7 @@ public:
     {
         r = moog_min(r, 1);
         
-        _resonance = r;
+        resonance = r;
         
         float ix, ixfrac;
         int ixint;
@@ -117,10 +117,10 @@ public:
     
     virtual void SetCutoff(float c) override
     {
-        _cutoff = c;
+        cutoff = c;
         
         // Normalized cutoff between [0, 1]
-        float fc = (2 * _cutoff) / sampleRate;
+        float fc = (2 * cutoff) / sampleRate;
         
         float x2 = fc*fc;
         float x3 = fc*x2;
@@ -128,7 +128,7 @@ public:
         // Frequency & amplitude correction (Cubic Fit)
         _p = -0.69346 * x3 - 0.59515 * x2 + 3.2937 * fc - 1.0072;
         
-        SetResonance(_resonance);
+        SetResonance(resonance);
     }
 
 private:

@@ -74,7 +74,7 @@ public:
                 // New input, stage 0
                 else
                 {
-                    _input = samples[samp] - ((4.0 * _resonance) * (_output - gain_compensation * samples[samp]));
+                    _input = samples[samp] - ((4.0 * resonance) * (_output - gain_compensation * samples[samp]));
                     _stage[stage] = (_h * tanh(_input) + _h0 * _stageZ1[stage]) + (1.0 - _g) * _stageTANH[stage];
                 }
                 
@@ -91,18 +91,18 @@ public:
     virtual void SetResonance(float r) override
     {
         // Direct mapping (no table or polynomial)
-        _resonance = r;
+        resonance = r;
     }
     
     virtual void SetCutoff(float c) override
     {
-        _cutoff = c;
+        cutoff = c;
         
         float fs = sampleRate;
         float x2 = 2 * fs;
         
         // Normalized cutoff [0, 1] in radians: ((2*pi) * cutoff / samplerate)
-        _g = (2 * MOOG_PI) * _cutoff / x2; // feedback coefficient at fs*2 because of doublesampling
+        _g = (2 * MOOG_PI) * cutoff / x2; // feedback coefficient at fs*2 because of doublesampling
         
         // FIR part with gain g
         _h = _g / 1.3;
