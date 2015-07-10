@@ -35,13 +35,9 @@ public:
     
     HuovilainenMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
-        acr = 0.0;
-        tune = 0.0;
-        
         memset(stage, 0, sizeof(stage));
         memset(stageZ1, 0, sizeof(stageZ1));
         memset(stageTanh, 0, sizeof(stageTanh));
-        
         SetTransistorVoltage();
     }
     
@@ -54,7 +50,7 @@ public:
     {
         double localOutput = 0;
         
-        for (int samp = 0; samp < n; ++samp)
+        for (int s = 0; s < n; ++s)
         {
             // 2x oversampling
             for (int j = 0; j < 2; ++j)
@@ -70,7 +66,7 @@ public:
                     }
                     else
                     {
-                        input = samples[samp] - resonanceQuad * output;
+                        input = samples[s] - resonanceQuad * output;
                         stage[stageIdx] = stageZ1[stageIdx] + tune * (tanh(input * thermal) - stageTanh[stageIdx]);
                     }
                     
@@ -84,7 +80,7 @@ public:
             
             output = localOutput;
             SNAP_TO_ZERO(output);
-            samples[samp] = output;
+            samples[s] = output;
         }
     }
     
@@ -104,7 +100,7 @@ public:
         double x2 = fc * fc;
         double x3 = fc * x2;
         
-        // Frequency & amplitude compoensation
+        // Frequency & amplitude compensation
         double fcr = 1.8730 * x3 + 0.4955 * x2 - 0.6490 * fc + 0.9988;
         
         // Resonance compensation
