@@ -33,23 +33,23 @@ http://www.synthmaker.co.uk/dokuwiki/doku.php?id=tutorials:oversampling
 class HuovilainenMoog : public LadderFilterBase
 {
 public:
-    
-    HuovilainenMoog(float sampleRate) : LadderFilterBase(sampleRate), thermal(0.000025)
-    {
+	
+	HuovilainenMoog(float sampleRate) : LadderFilterBase(sampleRate), thermal(0.000025)
+	{
 		memset(stage, 0, sizeof(stage));
-        memset(delay, 0, sizeof(delay));
-        memset(stageTanh, 0, sizeof(stageTanh));
+		memset(delay, 0, sizeof(delay));
+		memset(stageTanh, 0, sizeof(stageTanh));
 		SetCutoff(1000.0f);
-        SetResonance(0.10f);
-    }
-    
-    virtual ~HuovilainenMoog()
-    {
-        
-    }
-    
-    virtual void Process(float * samples, uint32_t n) noexcept override
-    {
+		SetResonance(0.10f);
+	}
+	
+	virtual ~HuovilainenMoog()
+	{
+		
+	}
+	
+	virtual void Process(float * samples, uint32_t n) noexcept override
+	{
 		for (int s = 0; s < n; ++s)
 		{
 			// Oversample
@@ -70,42 +70,42 @@ public:
 			samples[s] = delay[5];
 		}
 
-    }
-    
-    virtual void SetResonance(float r) override
-    {
+	}
+	
+	virtual void SetResonance(float r) override
+	{
 		resonance = r;
 		resQuad = 4.0 * resonance * acr;
-    }
-    
-    virtual void SetCutoff(float c) override
-    {
+	}
+	
+	virtual void SetCutoff(float c) override
+	{
 		cutoff = c;
 
-        double fc =  cutoff / sampleRate;
-        double f  =  fc * 0.5; // oversampled 
-        double fc2 = fc * fc;
-        double fc3 = fc * fc * fc;
+		double fc =  cutoff / sampleRate;
+		double f  =  fc * 0.5; // oversampled 
+		double fc2 = fc * fc;
+		double fc3 = fc * fc * fc;
 
-        double fcr = 1.8730 * fc3 + 0.4955 * fc2 - 0.6490 * fc + 0.9988;
-        acr = -3.9364 * fc2 + 1.8409 * fc + 0.9968;
+		double fcr = 1.8730 * fc3 + 0.4955 * fc2 - 0.6490 * fc + 0.9988;
+		acr = -3.9364 * fc2 + 1.8409 * fc + 0.9968;
 
-        tune = (1.0 - exp(-((2 * MOOG_PI) * f * fcr))) / thermal; 
+		tune = (1.0 - exp(-((2 * MOOG_PI) * f * fcr))) / thermal; 
 
-        SetResonance(resonance);
-    }
-    
+		SetResonance(resonance);
+	}
+	
 private:
-    
+	
 	double stage[4];
 	double stageTanh[3];
-    double delay[6];
+	double delay[6];
 
-    double thermal;
-    double tune;
-    double acr;
+	double thermal;
+	double tune;
+	double acr;
 	double resQuad;
-    
+	
 }; 
 
 #endif
