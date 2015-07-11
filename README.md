@@ -1,25 +1,26 @@
 # Moog Ladder Filters
 
-This project contains several digital implementations of the classic 4-pole 24 dB/octave analog filter introduced in 1965. This filter is well known to sound musical, in that it adds a nice character to any instrument and does not follow an idealized form of an accurate/digital filter. 
+This project contains several digital implementations of the classic 4-pole 24 dB/octave analog filter introduced in 1965. This filter is well known to add a nice character to any instrument, synthesized or acoustic. 
 
-The ladder structure consists of four one-pole filters and a global negative feedback loop. Several researchers have attempted to discretize this filter, including Stilson and Smith (1996), Wise (1998), Huovilainen (2004, 2010), Fontana (2007). 
+The ladder structure consists of four one-pole filters and a global negative feedback loop. Several researchers have attempted to discretize this filter, and their efforts are documented in the research/ directory. Most of the implementations are based on this research in some form. 
 
-More recently, a simplified model (based on the Huovilainen implementation) was presented in the book DAFX: Digital Audio Effects (2011) edited by Udo Zolzer. In 2013, an improved model was introduced by D'Angelo and Valimaki at the International Conference on Acoustics, Speech, and Signal Processing (ICASSP). 
+The filter classes do not rely on the use of any external libraries and can be used with little to no modification in other DSP projects. The project includes a test app that will play a short clip of white noise through the filters. 
 
-The filter classes do not rely on the use of any external libraries and can be used with little to no modification in other DSP projects. The project includes a test app that makes uses of RTAudio for cross-platform audio output. 
+# Filter Tuning & A Word of Warning
+Each filter has a unique character, accurate or not.The newest model is from 2015, and the oldest dates back more than 20 years. Some try to remain true to their analog counterpart, where others are more approximate. Each of the models has not been rigorously verified for all combinations of cutoff, resonance, and sampling rate. Some of the models are purposely built to self oscillate, but beware that others might blow up with parameters that exceed some invisible threshold you just found. 
 
 # Models & Licenses
 
-Commercial use indicates if the license terms permit redistribution in a closed-source product (like a VST plugin). Filtered output audio is fair game for any kind of sample library or music production, commercial or otherwise. 
+“Closed Source Friendly” indicates if the license terms permit redistribution in a closed-source product (like a VST plugin). Filtered output audio is fair game for any kind of sample library or music production, commercial or otherwise. In the case of copyright-only code, it is possible to contact the original author and request an explicit license.
 
-Implementation | License | Original Source | Commercial Use? 
+Implementation | License | Original Source | CS Friendly
 ------------- | ------------- | ----------------- | -----------------
-Stilson | Copyright | Moog~ by D. Lowenfels | No
-Oberheim | Copyright | Will Pirkle | No 
-Simplified | Copyright | DAFX Example | No
-Microtracker | Copyright | Magnus Jonsson | No
-Aaron | Copyright | Via Author | No 
-Huovilainen  | GPLv3 | CSound Src | OSS 
+Stilson | Copyright | Moog~ by D. Lowenfels | -
+Oberheim | Copyright | Will Pirkle | -
+Simplified | Copyright | DAFX Example | - 
+Microtracker | Copyright | Magnus Jonsson | -
+Aaron | Copyright | Via Author | -
+Huovilainen  | GPLv3 | CSound | No
 Improved | ISC | Via Author | Yes
 RKSimulation | BSD | Bob~ by Miller Puckette | Yes
 MusicDSP | Unlicensed | MusicDSP.org | Maybe
@@ -27,3 +28,7 @@ MusicDSP | Unlicensed | MusicDSP.org | Maybe
 ## ToDo
 
 * The Huovilainen and Simplified models need to be correctly oversampled and nyquist filtered
+* Several filters have extra parameters that could be exposed (drive, thermal coefficients, Q, etc)
+* Many filters could be easily modifiedfor HPF output
+* Denormal prevention
+* (Longer term) Filter response graphs
