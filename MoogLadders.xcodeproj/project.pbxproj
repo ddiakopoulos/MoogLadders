@@ -45,7 +45,7 @@
 		08BD62011B4D57460004E704 /* RKSimulationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RKSimulationModel.h; path = src/RKSimulationModel.h; sourceTree = "<group>"; };
 		08BD62021B4D57460004E704 /* SimplifiedModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SimplifiedModel.h; path = src/SimplifiedModel.h; sourceTree = "<group>"; };
 		08BD62031B4D57460004E704 /* StilsonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StilsonModel.h; path = src/StilsonModel.h; sourceTree = "<group>"; };
-		08BD62041B4D57460004E704 /* StilsonPirkleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = StilsonPirkleModel.h; path = src/StilsonPirkleModel.h; sourceTree = "<group>"; };
+		08BD62041B4D57460004E704 /* OberheimVariationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OberheimVariationModel.h; path = src/OberheimVariationModel.h; sourceTree = "<group>"; };
 		08BD62051B4D57780004E704 /* Filters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Filters.h; path = src/Filters.h; sourceTree = "<group>"; };
 		08BD62061B4D57780004E704 /* NoiseGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NoiseGenerator.h; path = src/NoiseGenerator.h; sourceTree = "<group>"; };
 		08BD62081B4D5D1E0004E704 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
@@ -104,7 +104,7 @@
 				08BD62121B51662C0004E704 /* MusicDSPModel.h */,
 				08BD62021B4D57460004E704 /* SimplifiedModel.h */,
 				08BD62031B4D57460004E704 /* StilsonModel.h */,
-				08BD62041B4D57460004E704 /* StilsonPirkleModel.h */,
+				08BD62041B4D57460004E704 /* OberheimVariationModel.h */,
 			);
 			name = source;
 			sourceTree = "<group>";

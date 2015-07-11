@@ -2,8 +2,8 @@
 
 #pragma once
 
-#ifndef STILSON_PIRKLE_LADDER_H
-#define STILSON_PIRKLE_LADDER_H
+#ifndef OBERHEIM_VARIATION_LADDER_H
+#define OBERHEIM_VARIATION_LADDER_H
 
 #include "LadderFilterBase.h"
 
@@ -12,16 +12,16 @@
 // http://www.willpirkle.com/Downloads/AN-8MoogHalfLadderFilter.pdf
 // http://www.willpirkle.com/fx-book/project-gallery/ => MoogLPF Project
 
-class StilsonPirkleMoog : public LadderFilterBase
+class OberheimVariationMoog : public LadderFilterBase
 {
     
 public:
     
-    StilsonPirkleMoog(float sampleRate) : LadderFilterBase(sampleRate)
+    OberheimVariationMoog(float sampleRate) : LadderFilterBase(sampleRate)
     {
     }
     
-    virtual ~StilsonPirkleMoog()
+    virtual ~OberheimVariationMoog()
     {
     }
     
