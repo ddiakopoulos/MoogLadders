@@ -52,6 +52,8 @@
 		08BD620A1B4D5D250004E704 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		08BD620C1B4D5D2A0004E704 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		08BD620E1B4D5D310004E704 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
+		08BD62111B51662C0004E704 /* MicrotrackerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MicrotrackerModel.h; path = src/MicrotrackerModel.h; sourceTree = "<group>"; };
+		08BD62121B51662C0004E704 /* MusicDSPModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MusicDSPModel.h; path = src/MusicDSPModel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,8 @@
 				08BD61FF1B4D57460004E704 /* HuovilainenModel.h */,
 				08BD62001B4D57460004E704 /* ImprovedModel.h */,
 				08BD62011B4D57460004E704 /* RKSimulationModel.h */,
+				08BD62111B51662C0004E704 /* MicrotrackerModel.h */,
+				08BD62121B51662C0004E704 /* MusicDSPModel.h */,
 				08BD62021B4D57460004E704 /* SimplifiedModel.h */,
 				08BD62031B4D57460004E704 /* StilsonModel.h */,
 				08BD62041B4D57460004E704 /* StilsonPirkleModel.h */,
