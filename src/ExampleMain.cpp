@@ -8,7 +8,7 @@
 #include "NoiseGenerator.h"
 
 #include "StilsonModel.h"
-#include "StilsonPirkleModel.h"
+#include "OberheimVariationModel.h"
 #include "SimplifiedModel.h"
 #include "ImprovedModel.h"
 #include "HuovilainenModel.h"
