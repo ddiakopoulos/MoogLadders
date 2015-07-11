@@ -134,8 +134,7 @@ public:
         LPF2->SetAlpha(G);
         LPF3->SetAlpha(G);
         LPF4->SetAlpha(G);
-        
-        // set betas
+
         LPF1->SetBeta(G*G*G / (1.0 + g));
         LPF2->SetBeta(G*G / (1.0 + g));
         LPF3->SetBeta(G / (1.0 + g));
