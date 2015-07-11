@@ -1,4 +1,4 @@
-#pragma comment(user, "license")
+// Copyright (c) 2014, Magnus Jonsson All rights reserved.
 
 #pragma once
 
@@ -10,22 +10,22 @@
 
 class MicrotrackerMoog : public LadderFilterBase
 {
-    
+
 public:
-    
-    MicrotrackerMoog(float sampleRate) : LadderFilterBase(sampleRate)
-    {
+
+	MicrotrackerMoog(float sampleRate) : LadderFilterBase(sampleRate)
+	{
 		p0 = p1 = p2 = p3 = p32 = p33 = p34 = 0.0;
 		SetCutoff(1000.0f);
-        SetResonance(0.10f);
-    }
-    
-    virtual ~MicrotrackerMoog()
-    {
-    }
-    
-    virtual void Process(float * samples, uint32_t n) noexcept override
-    {
+		SetResonance(0.10f);
+	}
+
+	virtual ~MicrotrackerMoog()
+	{
+	}
+
+	virtual void Process(float * samples, uint32_t n) noexcept override
+	{
 		double k = resonance * 4;
 		for (int s = 0; s < n; ++s)
 		{
@@ -45,28 +45,28 @@ public:
 
 			samples[s] = out;
 		}
-    }
-    
-    virtual void SetResonance(float r) override
-    {
+	}
+
+	virtual void SetResonance(float r) override
+	{
 		resonance = r;
-    }
-    
-    virtual void SetCutoff(float c) override
-    {
+	}
+
+	virtual void SetCutoff(float c) override
+	{
 		cutoff = c * 2 * MOOG_PI / sampleRate;
 		cutoff = moog_min(cutoff, 1);
-    }
-    
+	}
+
 private:
 
-  double p0;
-  double p1;
-  double p2;
-  double p3;
-  double p32;
-  double p33;
-  double p34;
+	double p0;
+	double p1;
+	double p2;
+	double p3;
+	double p32;
+	double p33;
+	double p34;
 };
 
 #endif

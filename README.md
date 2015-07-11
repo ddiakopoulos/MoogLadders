@@ -1,6 +1,6 @@
 # Moog Ladder Filters
 
-This project contains several digital implementations of the classic 4-pole 24 dB/octave analog filter introduced in 1965. This filter is well known to add a nice character to any instrument, synthesized or acoustic. 
+This project contains several digital implementations of the classic 4-pole, 24 dB/octave analog filter introduced in 1965. This filter is well known to add a nice character to any instrument, synthesized or acoustic. 
 
 The ladder structure consists of four one-pole filters and a global negative feedback loop. Several researchers have attempted to discretize this filter, and their efforts are documented in the research/ directory. Most of the implementations are based on this research in some form. 
 

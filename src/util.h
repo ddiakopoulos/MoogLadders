@@ -1,4 +1,27 @@
-#pragma comment(user, "license")
+/*
+Copyright (c) 2015, Dimitri Diakopoulos All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
 #pragma once
 
@@ -37,16 +60,16 @@
 // Linear interpolation, used to crossfade a gain table
 inline float moog_lerp(float amount, float a, float b)
 {
-    return (1.0f - amount) * a + amount * b;
+	return (1.0f - amount) * a + amount * b;
 }
 
 inline float moog_min(float a, float b)
 {
-    a = b - a;
-    a += fabs(a);
-    a *= 0.5f;
-    a = b - a;
-    return a;
+	a = b - a;
+	a += fabs(a);
+	a *= 0.5f;
+	a = b - a;
+	return a;
 }
 
 // Clamp without branching
@@ -55,9 +78,9 @@ inline float moog_min(float a, float b)
 // The easiest way to understand it is check what happends on both cases.
 inline float moog_saturate(float input)
 {
-    float x1 = fabs(input + 0.95f);
-    float x2 = fabs(input - 0.95f);
-    return 0.5f * (x1 - x2);
+	float x1 = fabs(input + 0.95f);
+	float x2 = fabs(input - 0.95f);
+	return 0.5f * (x1 - x2);
 }
 
 // Imitate the (tanh) clipping function of a transistor pair.
@@ -67,32 +90,32 @@ inline float moog_saturate(float input)
 // can sometimes hear the discontinuity in 4th derivative at the clip point
 inline float clip(float value, float saturation, float saturationinverse)
 {
-    float v2 = (value * saturationinverse > 1 ? 1 :
-                (value * saturationinverse < -1 ? -1:
-                 value * saturationinverse));
-    return (saturation * (v2 - (1./3.) * v2 * v2 * v2));
+	float v2 = (value * saturationinverse > 1 ? 1 :
+				(value * saturationinverse < -1 ? -1:
+				 value * saturationinverse));
+	return (saturation * (v2 - (1./3.) * v2 * v2 * v2));
 }
 
 #define HZ_TO_RAD(f) (MOOG_PI_2 * f)
 #define RAD_TO_HZ(omega) (MOOG_INV_PI_2 * omega)
 
 #ifdef __GNUC__
-    #define ctz(N) __builtin_ctz(N)
+	#define ctz(N) __builtin_ctz(N)
 #else
-    template<typename T>
-    inline int ctz(T x)
-    {
-        int p, b;
-        for (p = 0, b = 1; !(b & x); b <<= 1, ++p)
-            ;
-        return p;
-    }
+	template<typename T>
+	inline int ctz(T x)
+	{
+		int p, b;
+		for (p = 0, b = 1; !(b & x); b <<= 1, ++p)
+			;
+		return p;
+	}
 #endif
 
 inline double fast_tanh(double x) 
 {
-  double x2 = x * x;
-  return x * (27 + x2) / (27 + 9 * x2);
+	double x2 = x * x;
+	return x * (27 + x2) / (27 + 9 * x2);
 }
 
 #endif

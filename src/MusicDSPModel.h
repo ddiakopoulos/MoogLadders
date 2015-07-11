@@ -1,4 +1,5 @@
-#pragma comment(user, "license")
+// This file is unlicensed and uncopyright as found at:
+// http://www.musicdsp.org/showone.php?id=24
 
 #pragma once
 
@@ -8,27 +9,26 @@
 #include "LadderFilterBase.h"
 #include "Util.h"
 
-// http://www.musicdsp.org/showone.php?id=24
-
 class MusicDSPMoog : public LadderFilterBase
 {
-    
+	
 public:
-    
-    MusicDSPMoog(float sampleRate) : LadderFilterBase(sampleRate)
-    {
+	
+	MusicDSPMoog(float sampleRate) : LadderFilterBase(sampleRate)
+	{
 		memset(stage, 0, sizeof(stage));
-        memset(delay, 0, sizeof(delay));
+		memset(delay, 0, sizeof(delay));
 		SetCutoff(1000.0f);
-        SetResonance(0.10f);
-    }
-    
-    virtual ~MusicDSPMoog()
-    {
-    }
-    
-    virtual void Process(float * samples, uint32_t n) noexcept override
-    {
+		SetResonance(0.10f);
+	}
+	
+	virtual ~MusicDSPMoog()
+	{
+
+	}
+	
+	virtual void Process(float * samples, uint32_t n) noexcept override
+	{
 		for (int s = 0; s < n; ++s)
 		{
 			float x = samples[s] - resonance * stage[3];
@@ -38,7 +38,7 @@ public:
 			stage[1] = stage[0] * p + delay[1] * p - k * stage[1];
 			stage[2] = stage[1] * p + delay[2] * p - k * stage[2];
 			stage[3] = stage[2] * p + delay[3] * p - k * stage[3];
-        
+		
 			// Clipping band-limited sigmoid
 			stage[3] -= (stage[3] * stage[3] * stage[3]) / 6.0;
 			
@@ -49,27 +49,27 @@ public:
 
 			samples[s] = stage[3];
 		}
-    }
-    
-    virtual void SetResonance(float r) override
-    {
+	}
+	
+	virtual void SetResonance(float r) override
+	{
 		resonance = r * (t2 + 6.0 * t1) / (t2 - 6.0 * t1);
-    }
-    
-    virtual void SetCutoff(float c) override
-    {
+	}
+	
+	virtual void SetCutoff(float c) override
+	{
 		cutoff = 2.0 * c / sampleRate;
 
 		p = cutoff * (1.8 - 0.8 * cutoff);
-        k = 2.0 * sin(cutoff * MOOG_PI * 0.5) - 1.0;
-        t1 = (1.0 - p) * 1.386249;
-        t2 = 12.0 + t1 * t1;
+		k = 2.0 * sin(cutoff * MOOG_PI * 0.5) - 1.0;
+		t1 = (1.0 - p) * 1.386249;
+		t2 = 12.0 + t1 * t1;
 
 		SetResonance(resonance);
-    }
-    
+	}
+	
 private:
-    
+	
 	double stage[4];
 	double delay[4];
 
