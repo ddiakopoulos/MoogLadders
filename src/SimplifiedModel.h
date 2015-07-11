@@ -90,7 +90,8 @@ public:
     {
         cutoff = c;
         
-        float fs2 = 2 * sampleRate;
+        // Not being oversampled at the moment... * 2 when enabled
+        float fs2 = sampleRate;
         
         // Normalized cutoff [0, 1] in radians: ((2*pi) * cutoff / samplerate)
         g = (2 * MOOG_PI) * cutoff / fs2; // feedback coefficient at fs*2 because of doublesampling

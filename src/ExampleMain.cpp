@@ -38,7 +38,7 @@ int main()
     //stilsonModel.Process(noiseSamples.data(), noiseSamples.size());
     
     SimplifiedMoog simplifiedModel(desiredSampleRate);
-    //simplifiedModel.Process(noiseSamples.data(), noiseSamples.size());
+    simplifiedModel.Process(noiseSamples.data(), noiseSamples.size());
     
     HuovilainenMoog huovilainenModel(desiredSampleRate);
     //huovilainenModel.Process(noiseSamples.data(), noiseSamples.size());
