@@ -19,7 +19,7 @@
  */
 
 // Thermal voltage (26 milliwats at room temperature)
-#define VT 0.026
+#define VT 0.312
 
 class ImprovedMoog : public LadderFilterBase
 {
@@ -31,7 +31,7 @@ public:
         memset(dV, 0, sizeof(dV));
         memset(tV, 0, sizeof(tV));
         
-        drive = 0.0517;
+        drive = 1.0f;
         
         SetCutoff(1000.0f); // normalized cutoff frequency
         SetResonance(0.1f); // [0, 4]
