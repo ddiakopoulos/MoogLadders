@@ -10,20 +10,20 @@ The filter classes do not rely on the use of any external libraries and can be u
 
 # Models & Licenses
 
+Commercial use indicates if the license terms permit redistribution in a closed-source product (like a VST plugin). Filtered output audio is fair game for any kind of sample library or music production, commercial or otherwise. 
+
 Implementation | License | Original Source | Commercial Use? 
 ------------- | ------------- | ----------------- | -----------------
 Stilson | Copyright | Moog~ by D. Lowenfels | No
-StilsonPirkle | Copyright | Via Author | No 
+Oberheim | Copyright | Will Pirkle | No 
 Simplified | Copyright | DAFX Example | No
+Microtracker | Copyright | Magnus Jonsson | No
 Aaron | Copyright | Via Author | No 
-Huovilainen  | GPLv3 | CSound Src | No 
+Huovilainen  | GPLv3 | CSound Src | OSS 
 Improved | ISC | Via Author | Yes
 RKSimulation | BSD | Bob~ by Miller Puckette | Yes
+MusicDSP | Unlicensed | MusicDSP.org | Maybe
 
 ## ToDo
 
-* The Huovilainen and Simplified models do not handle the 2x oversampling required of them and will alias under specific conditions. In the future, these models need to be modified such that the incoming sample block is zero-stuffed and later half-band filtered immediately prior to output.
-
-https://cycling74.com/forums/topic/pm-ladder-implementation-of-the-moog-ladder-filter/
-http://music.columbia.edu/pipermail/music-dsp/2005-February/062973.html
-https://github.com/Jarkre/DSP/blob/bfe87d2c4297d003f2475dc22d460440e5e1b4fa/WDL/denormal.h
+* The Huovilainen and Simplified models need to be correctly oversampled and nyquist filtered
