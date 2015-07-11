@@ -40,12 +40,10 @@ inline float moog_lerp(float amount, float a, float b)
     return (1.0f - amount) * a + amount * b;
 }
 
-// It works making the diference add its abs, so if the diff, is negative it annulates. then it
-// fixes everything from this anulation to return a or b.
 inline float moog_min(float a, float b)
 {
     a = b - a;
-    a += fabs( a );
+    a += fabs(a);
     a *= 0.5f;
     a = b - a;
     return a;
@@ -60,6 +58,19 @@ inline float moog_saturate(float input)
     float x1 = fabs(input + 0.95f);
     float x2 = fabs(input - 0.95f);
     return 0.5f * (x1 - x2);
+}
+
+// Imitate the (tanh) clipping function of a transistor pair.
+// to 4th order, tanh is x - x*x*x/3; this cubic's
+// plateaus are at +/- 1 so clip to 1 and evaluate the cubic.
+// This is pretty coarse - for instance if you clip a sinusoid this way you
+// can sometimes hear the discontinuity in 4th derivative at the clip point
+inline float clip(float value, float saturation, float saturationinverse)
+{
+    float v2 = (value * saturationinverse > 1 ? 1 :
+                (value * saturationinverse < -1 ? -1:
+                 value * saturationinverse));
+    return (saturation * (v2 - (1./3.) * v2 * v2 * v2));
 }
 
 #define HZ_TO_RAD(f) (MOOG_PI_2 * f)
