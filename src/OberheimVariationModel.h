@@ -19,40 +19,40 @@ public:
     
     void Reset()
     {
-        dAlpha = 1.0;
-        dBeta = 0.0;
-        dGamma = 1.0;
-        dDelta = 0.0;
-        dEpsilon = 0.0;
-        da0 = 1.0;
-        dFeedback = 0.0;
-        dZ1 = 0.0;
+        alpha = 1.0;
+        beta = 0.0;
+        gamma = 1.0;
+        delta = 0.0;
+        epsilon = 0.0;
+        a0 = 1.0;
+        feedback = 0.0;
+        z1 = 0.0;
     }
     
-    double Tick(double xn)
+    double Tick(double s)
     {
-        xn = xn * dGamma + dFeedback + dEpsilon * GetFeedbackOutput();
-        double vn = (da0 * xn - dZ1) * dAlpha;
-        double lpfOutput = vn + dZ1;
-        dZ1 = vn + lpfOutput;
-        return lpfOutput;
+        s = s * gamma + feedback + epsilon * GetFeedbackOutput();
+        double vn = (a0 * s - z1) * alpha;
+        double out = vn + z1;
+        z1 = vn + out;
+        return out;
     }
     
-    void SetFeedback(double fb) { dFeedback = fb; }
-    double GetFeedbackOutput(){return dBeta * (dZ1 + dFeedback * dDelta); }
-    void SetAlpha(double a) { dAlpha = a; };
-    void SetBeta(double b) { dBeta = b; };
+    void SetFeedback(double fb) { feedback = fb; }
+    double GetFeedbackOutput(){ return beta * (z1 + feedback * delta); }
+    void SetAlpha(double a) { alpha = a; };
+    void SetBeta(double b) { beta = b; };
     
 private:
     float sampleRate;
-    double dAlpha;
-    double dBeta;
-    double dGamma;
-    double dDelta;
-    double dEpsilon;
-    double da0;
-    double dFeedback;
-    double dZ1;
+    double alpha;
+    double beta;
+    double gamma;
+    double delta;
+    double epsilon;
+    double a0;
+    double feedback;
+    double z1;
 };
 
 class OberheimVariationMoog : public LadderFilterBase
@@ -94,10 +94,10 @@ public:
                 LPF3->GetFeedbackOutput() +
                 LPF4->GetFeedbackOutput();
             
-            input *= 1.0 + dK;
+            input *= 1.0 + K;
             
             // calculate input to first filter
-            double u = (input - dK * sigma) * dAlpha0;
+            double u = (input - K * sigma) * alpha0;
             
             u = tanh(saturation * u);
             
@@ -107,14 +107,19 @@ public:
             double stage4 = LPF4->Tick(stage3);
             
             // Oberheim variations
-            samples[s] = dA*u + dB*stage1 + dC*stage2 + dD*stage3 + dE*stage4;
+            samples[s] =
+                oberheimCoefs[0] * u +
+                oberheimCoefs[1] * stage1 +
+                oberheimCoefs[2] * stage2 +
+                oberheimCoefs[3] * stage3 +
+                oberheimCoefs[4] * stage4;
         }
     }
     
     virtual void SetResonance(float r) override
     {
         resonance = r;
-        dK = (4.0) * (Q - 1.0)/(10.0 - 1.0);
+        K = (4.0) * (Q - 1.0)/(10.0 - 1.0);
     }
     
     virtual void SetCutoff(float c) override
@@ -140,15 +145,15 @@ public:
         LPF3->SetBeta(G / (1.0 + g));
         LPF4->SetBeta(1.0 / (1.0 + g));
         
-        dGamma = G*G*G*G;
-        dAlpha0 = 1.0 / (1.0 + dK * dGamma);
+        gamma = G*G*G*G;
+        alpha0 = 1.0 / (1.0 + K * gamma);
         
         // Oberheim variations / LPF4
-        dA = 0.0;
-        dB = 0.0;
-        dC = 0.0;
-        dD = 0.0;
-        dE = 1.0;
+        oberheimCoefs[0] = 0.0;
+        oberheimCoefs[1] = 0.0;
+        oberheimCoefs[2] = 0.0;
+        oberheimCoefs[3] = 0.0;
+        oberheimCoefs[4] = 1.0;
     }
     
 private:
@@ -158,17 +163,13 @@ private:
     VAOnePole * LPF3;
     VAOnePole * LPF4;
     
-    double dK;
-    double dGamma;
-    double dAlpha0;
+    double K;
+    double gamma;
+    double alpha0;
     double Q;
     double saturation;
     
-    double dA;
-    double dB;
-    double dC;
-    double dD;
-    double dE;
+    double oberheimCoefs[5];
 };
 
 #endif
