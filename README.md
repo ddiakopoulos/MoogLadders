@@ -20,7 +20,7 @@ Oberheim | Copyright | Will Pirkle | -
 Simplified | Copyright | DAFX Example | - 
 Microtracker | Copyright | Magnus Jonsson | -
 Aaron | Copyright | Via Author | -
-Huovilainen  | GPLv3 | CSound | No
+Huovilainen  | LGPLv3 | CSound | As Dynamic Lib
 Improved | ISC | Via Author | Yes
 RKSimulation | BSD | Bob~ by Miller Puckette | Yes
 MusicDSP | Unlicensed | MusicDSP.org | Maybe
