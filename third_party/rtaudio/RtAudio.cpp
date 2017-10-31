@@ -5958,13 +5958,13 @@ bool RtApiDs :: probeDeviceOpen( unsigned int device, StreamMode mode, unsigned 
     if ( handle->buffer[0] ) { // the object pointer can be NULL and valid
       LPDIRECTSOUND object = (LPDIRECTSOUND) handle->id[0];
       LPDIRECTSOUNDBUFFER buffer = (LPDIRECTSOUNDBUFFER) handle->buffer[0];
-      if ( buffer ) buffer->Release();
+      buffer->Release();
       object->Release();
     }
     if ( handle->buffer[1] ) {
       LPDIRECTSOUNDCAPTURE object = (LPDIRECTSOUNDCAPTURE) handle->id[1];
       LPDIRECTSOUNDCAPTUREBUFFER buffer = (LPDIRECTSOUNDCAPTUREBUFFER) handle->buffer[1];
-      if ( buffer ) buffer->Release();
+      buffer->Release();
       object->Release();
     }
     CloseHandle( handle->condition );
@@ -6006,19 +6006,15 @@ void RtApiDs :: closeStream()
     if ( handle->buffer[0] ) { // the object pointer can be NULL and valid
       LPDIRECTSOUND object = (LPDIRECTSOUND) handle->id[0];
       LPDIRECTSOUNDBUFFER buffer = (LPDIRECTSOUNDBUFFER) handle->buffer[0];
-      if ( buffer ) {
-        buffer->Stop();
-        buffer->Release();
-      }
+      buffer->Stop();
+      buffer->Release();
       object->Release();
     }
     if ( handle->buffer[1] ) {
       LPDIRECTSOUNDCAPTURE object = (LPDIRECTSOUNDCAPTURE) handle->id[1];
       LPDIRECTSOUNDCAPTUREBUFFER buffer = (LPDIRECTSOUNDCAPTUREBUFFER) handle->buffer[1];
-      if ( buffer ) {
-        buffer->Stop();
-        buffer->Release();
-      }
+      buffer->Stop();
+      buffer->Release();
       object->Release();
     }
     CloseHandle( handle->condition );
