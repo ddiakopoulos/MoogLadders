@@ -1,7 +1,5 @@
 // Copyright (c) 2011, The Authors of "DAFX - Digital Audio Effects (Second Edition)". All rights reserved.
 
-#pragma comment(user, "license")
-
 #pragma once
 
 #ifndef SIMPLIFIED_LADDER_H
