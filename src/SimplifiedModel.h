@@ -1,4 +1,10 @@
-// Copyright (c) 2011, The Authors of "DAFX - Digital Audio Effects (Second Edition)". All rights reserved.
+/* -------------------------------------------------------------------------
+ * This source code is provided without any warranties as published in 
+ * DAFX book 2nd edition, copyright Wiley & Sons 2011, available at 
+ * http://www.dafx.de. It may be used for educational purposes and not 
+ * for commercial applications without further permission.
+ * -------------------------------------------------------------------------
+ */
 
 #pragma once
 
@@ -16,6 +22,7 @@ maintains the ability to self oscillate when the feedback gain is >= 1.0.
 
 References: DAFX - Zolzer (ed) (2nd ed)
 Original implementation: Valimaki, Bilbao, Smith, Abel, Pakarinen, Berners (DAFX)
+This is a transliteration into C++ of the original matlab source (moogvcf.m)
 
 Considerations for oversampling:
 http://music.columbia.edu/pipermail/music-dsp/2005-February/062778.html
