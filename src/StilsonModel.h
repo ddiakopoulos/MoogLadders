@@ -1,4 +1,5 @@
 // Copyright (c) 2003, David Lowenfels All rights reserved.
+// Released as the moog~ pd extern.
 
 #pragma once
 
