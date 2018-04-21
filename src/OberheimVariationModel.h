@@ -1,4 +1,5 @@
-// Copyright (c) 2013, William Pirkle. All rights reserved.
+// See: http://www.willpirkle.com/forum/licensing-and-book-code/licensing-and-using-book-code/
+// The license is "You may also use the code from the FX and Synth books without licensing or fees. The code is for you to develop your own plugins for your own use or for commercial use."
 
 #pragma once
 
