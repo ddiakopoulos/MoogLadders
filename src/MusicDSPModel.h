@@ -1,5 +1,6 @@
 // This file is unlicensed and uncopyright as found at:
 // http://www.musicdsp.org/showone.php?id=24
+// Considering how widely this same code has been used in ~100 projects on GitHub with various licenses, it might be reasonable to suggest that the license is CC-BY-SA
 
 #pragma once
 
