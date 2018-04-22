@@ -51,12 +51,9 @@ public:
 		SetResonance(0.1f); // [0, 4]
 	}
 	
-	virtual ~ImprovedMoog()
-	{
-
-	}
+	virtual ~ImprovedMoog() { }
 	
-	virtual void Process(float * samples, uint32_t n) noexcept override
+	virtual void Process(float * samples, uint32_t n) override
 	{
 		double dV0, dV1, dV2, dV3;
 

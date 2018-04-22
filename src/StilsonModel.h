@@ -65,7 +65,7 @@ public:
 		
 	}
 	
-	virtual void Process(float * samples, uint32_t n) noexcept override
+	virtual void Process(float * samples, uint32_t n) override
 	{
 		float localState;
 		

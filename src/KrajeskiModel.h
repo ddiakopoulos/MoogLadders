@@ -1,9 +1,7 @@
-// Copyright (c) 2012, Aaron Krajeski All rights reserved.
-
 #pragma once
 
-#ifndef AARON_LADDER_H
-#define AARON_LADDER_H
+#ifndef KRAJESKI_LADDER_H
+#define KRAJESKI_LADDER_H
 
 #include "LadderFilterBase.h"
 #include "Util.h"
@@ -18,16 +16,20 @@ necessity of the separation table, audio rate update
 of cutoff and resonance and a smoothly saturating
 tanh() function, clamping output and creating inherent
 nonlinearities.
- 
-http://song-swap.com/MUMT618/aaron/Presentation/demo.html
+
+This code is effectively in the public domain; in an email exchange on
+4.21.2018 the Krajeski stated: "That work is under no copyright. 
+You may use it however you might like."
+
+Source: http://song-swap.com/MUMT618/aaron/Presentation/demo.html
 */
 
-class AaronMoog : public LadderFilterBase
+class KrajeskiMoog final : public LadderFilterBase
 {
 	
 public:
 	
-	AaronMoog(float sampleRate) : LadderFilterBase(sampleRate)
+    KrajeskiMoog(float sampleRate) : LadderFilterBase(sampleRate)
 	{
 		memset(state, 0, sizeof(state));
 		memset(delay, 0, sizeof(delay));
@@ -39,12 +41,9 @@ public:
 		SetResonance(0.1f);
 	}
 	
-	virtual ~AaronMoog()
-	{
-		
-	}
+	virtual ~KrajeskiMoog() { }
 	
-	virtual void Process(float * samples, uint32_t n) noexcept override
+	virtual void Process(float * samples, const uint32_t n) override
 	{
 		for (int s = 0; s < n; ++s)
 		{

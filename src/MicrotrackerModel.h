@@ -20,11 +20,9 @@ public:
 		SetResonance(0.10f);
 	}
 
-	virtual ~MicrotrackerMoog()
-	{
-	}
+	virtual ~MicrotrackerMoog() {}
 
-	virtual void Process(float * samples, uint32_t n) noexcept override
+	virtual void Process(float * samples, uint32_t n) override
 	{
 		double k = resonance * 4;
 		for (int s = 0; s < n; ++s)

@@ -10,11 +10,10 @@
 #include "SimplifiedModel.h"
 #include "ImprovedModel.h"
 #include "HuovilainenModel.h"
-#include "AaronModel.h"
+#include "KrajeskiModel.h"
 #include "RKSimulationModel.h"
 #include "MicrotrackerModel.h"
 #include "MusicDSPModel.h"
-#include "AaronModel.h"
 #include "RKSimulationModel.h"
 
 #include <thread>
@@ -52,7 +51,7 @@ int main()
 	MusicDSPMoog musicdspModel(desiredSampleRate);
 	//musicdspModel.Process(noiseSamples.data(), noiseSamples.size());
 	
-	AaronMoog aaronModel(desiredSampleRate);
+    KrajeskiMoog aaronModel(desiredSampleRate);
 	//aaronModel.Process(noiseSamples.data(), noiseSamples.size());
 
 	RKSimulationMoog rkModel(desiredSampleRate);

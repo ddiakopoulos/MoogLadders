@@ -24,7 +24,7 @@
     <ClCompile Include="ExampleMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\AaronModel.h" />
+    <ClInclude Include="..\src\KrajeskiModel.h" />
     <ClInclude Include="..\src\AudioDevice.h" />
     <ClInclude Include="..\src\Filters.h" />
     <ClInclude Include="..\src\HuovilainenModel.h" />

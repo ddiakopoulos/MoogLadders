@@ -59,7 +59,7 @@ public:
 	// The cheap solution is to zero-stuff the incoming sample buffer.
 	// With resampling, numSamples should be 2x the frame size of the existing sample rate.
 	// The output of this filter needs to be run through a decimator to return to the original samplerate.
-	virtual void Process(float * samples, uint32_t n) noexcept override
+	virtual void Process(float * samples, uint32_t n) override
 	{
 		// Processing still happens at sample rate...
 		for (int s = 0; s < n; ++s)

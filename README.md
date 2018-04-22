@@ -11,24 +11,28 @@ Each model is unique. The newest is from 2015 while the oldest dates back over 2
 
 # Models & Licenses
 
-“Closed Source Friendly” indicates if the individual license permits redistribution in a closed-source product (like a VST plugin). Filtered output audio is fair game for any kind of sample library or music production, commercial or otherwise. In the case of copyright-only code, it is possible to contact the original author to request an explicit license.
+“Closed-Source Friendly” indicates if the individual license permits redistribution in a closed-source product (like a VST plugin). Filtered output audio is fair game for any kind of sample library or music production, commercial or otherwise. In the case of copyright-only code, it is possible to contact the original author to request an explicit license.
 
 Implementation | License | Original Source | Closed-Source Friendly
 ------------- | ------------- | ----------------- | -----------------
-Stilson | Copyright | Moog~ by D. Lowenfels | -
-Microtracker | Copyright | Magnus Jonsson | -
-Aaron | Copyright | Via Author | -
+Stilson | Copyright | Moog~ by D. Lowenfels | No
+Microtracker | Copyright | Magnus Jonsson | No
 Simplified | Custom | DAFX | No
 Huovilainen  | LGPLv3 | CSound | If dynamically linked
+Krajeski | Unlicense | Aaron Krajeski | Yes
 MusicDSP | Suggested CC-BY-SA | MusicDSP.org | Yes
 Oberheim | Custom | Will Pirkle | Yes
 Improved | ISC | Via Author | Yes
 RKSimulation | BSD | Bob~ by Miller Puckette | Yes
 
-## ToDo
+# ToDo
 
-* The Huovilainen and Simplified models need to be correctly oversampled and nyquist filtered
-* Several filters have extra parameters that could be exposed (drive, thermal coefficients, Q, etc)
-* Many filters could be easily modified for HPF output
-* Denormal prevention
-* (Longer term) Filter response graphs
+Community contributions are welcome.
+
+* Several filters have extra parameters that could be exposed (drive, thermal coefficients, Q, etc).
+* Many filters could be easily modified for HPF or other types of output.
+* Filter response graphs.
+* The Huovilainen and Simplified models need to be oversampled and nyquist filtered.
+
+# License
+If not otherwise stated in the header of a file, all other code in this project is released under the Unlicense.
