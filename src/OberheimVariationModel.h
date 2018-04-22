@@ -46,6 +46,7 @@ public:
 	void SetBeta(double b) { beta = b; };
 	
 private:
+
 	float sampleRate;
 	double alpha;
 	double beta;

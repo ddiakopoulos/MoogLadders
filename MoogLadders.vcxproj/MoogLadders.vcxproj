@@ -33,11 +33,11 @@
     <ClInclude Include="..\src\MicrotrackerModel.h" />
     <ClInclude Include="..\src\MusicDSPModel.h" />
     <ClInclude Include="..\src\NoiseGenerator.h" />
+    <ClInclude Include="..\src\OberheimVariationModel.h" />
     <ClInclude Include="..\src\RingBuffer.h" />
     <ClInclude Include="..\src\RKSimulationModel.h" />
     <ClInclude Include="..\src\SimplifiedModel.h" />
     <ClInclude Include="..\src\StilsonModel.h" />
-    <ClInclude Include="..\src\StilsonPirkleModel.h" />
     <ClInclude Include="..\src\util.h" />
     <ClInclude Include="..\third_party\rtaudio\RtAudio.h" />
   </ItemGroup>

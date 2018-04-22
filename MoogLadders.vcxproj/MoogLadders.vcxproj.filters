@@ -62,9 +62,6 @@
     <ClInclude Include="..\src\StilsonModel.h">
       <Filter>source\models</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\StilsonPirkleModel.h">
-      <Filter>source\models</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Filters.h">
       <Filter>source\extra</Filter>
     </ClInclude>
@@ -75,6 +72,9 @@
       <Filter>source\models</Filter>
     </ClInclude>
     <ClInclude Include="..\src\KrajeskiModel.h">
+      <Filter>source\models</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\OberheimVariationModel.h">
       <Filter>source\models</Filter>
     </ClInclude>
   </ItemGroup>
