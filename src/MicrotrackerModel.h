@@ -1,4 +1,5 @@
-// Copyright (c) 2014, Magnus Jonsson All rights reserved.
+// Based on an implementation by Magnus Jonsson
+// https://github.com/magnusjonsson/microtracker (unlicense)
 
 #pragma once
 
