@@ -16,9 +16,9 @@ Each model is unique. The newest is from 2015 while the oldest dates back over 2
 Implementation | License | Original Source | Closed-Source Friendly
 ------------- | ------------- | ----------------- | -----------------
 Stilson | Copyright | Moog~ by D. Lowenfels | No
-Microtracker | Copyright | Magnus Jonsson | No
 Simplified | Custom | DAFX | No
 Huovilainen  | LGPLv3 | CSound | If dynamically linked
+Microtracker | Unlicense | Magnus Jonsson | Yes
 Krajeski | Unlicense | Aaron Krajeski | Yes
 MusicDSP | Suggested CC-BY-SA | MusicDSP.org | Yes
 Oberheim | Custom | Will Pirkle | Yes
