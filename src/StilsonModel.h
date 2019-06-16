@@ -1,5 +1,9 @@
-// Copyright (c) 2003, David Lowenfels All rights reserved.
+// Copyright (c) 2003, David Lowenfels
 // Released as the moog~ pd extern.
+
+// This code is Unlicensed (i.e. public domain); in an email exchange on
+// 6.14.2019 David Lowenfels stated "You're welcome to use the Moog~ code, 
+// license it free as in beer or whatever :)"
 
 #pragma once
 
