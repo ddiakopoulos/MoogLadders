@@ -17,8 +17,8 @@ of cutoff and resonance and a smoothly saturating
 tanh() function, clamping output and creating inherent
 nonlinearities.
 
-This code is effectively in the public domain; in an email exchange on
-4.21.2018 the Krajeski stated: "That work is under no copyright. 
+This code is Unlicensed (i.e. public domain); in an email exchange on
+4.21.2018 Aaron Krajeski stated: "That work is under no copyright. 
 You may use it however you might like."
 
 Source: http://song-swap.com/MUMT618/aaron/Presentation/demo.html
