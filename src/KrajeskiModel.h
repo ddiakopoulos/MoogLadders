@@ -51,7 +51,8 @@ public:
 			
 			for(int i = 0; i < 4; i++)
 			{
-				state[i+1] = g * (0.3 / 1.3 * state[i] + 1 / 1.3 * delay[i] - state[i + 1]) + state[i + 1];
+				state[i+1] = fclamp(g * (0.3 / 1.3 * state[i] + 1 / 1.3 * delay[i] - state[i + 1]) + state[i + 1], -1e30, 1e30);
+				
 				delay[i] = state[i];
 			}
 			samples[s] = state[4];
@@ -80,6 +81,10 @@ private:
 	double gRes; // A similar derived parameter for resonance.
 	double gComp; // Compensation factor.
 	double drive; // A parameter that controls intensity of nonlinearities.
+	
+	inline float fclamp(float in, float min, float max){
+	    return fmin(fmax(in, min), max);
+	}
 	
 };
 
